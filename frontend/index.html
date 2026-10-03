@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LandDNA — Smart Land Verification Platform</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+
+  <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50 px-6 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold text-xl">
+        <i class="fa-solid fa-dna"></i>
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="text-xl font-bold tracking-tight text-white">LandDNA</span>
+          <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-800">GovTech Prototype</span>
+        </div>
+        <p class="text-xs text-slate-400">Digital Land Records & Fraud Detection Engine</p>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2 bg-slate-950 p-1.5 rounded-xl border border-slate-800">
+      <span class="text-xs text-slate-400 px-2 font-medium">Judge Demo Switcher:</span>
+      <button onclick="loadScenario('clean')" id="btn-clean" class="text-xs px-3 py-1.5 rounded-lg bg-emerald-600 text-white font-medium">
+        <i class="fa-solid fa-check"></i> Clean Plot (125)
+      </button>
+      <button onclick="loadScenario('fraud')" id="btn-fraud" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium">
+        <i class="fa-solid fa-triangle-exclamation"></i> Fraud & Double-Sale (204)
+      </button>
+    </div>
+
+    <div class="flex items-center gap-3 text-xs">
+      <span class="px-2.5 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-300 rounded-lg">
+        <i class="fa-solid fa-shield-halved mr-1"></i> Synthetic Data Mode
+      </span>
+      <button onclick="window.print()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg border border-slate-700">
+        <i class="fa-solid fa-file-arrow-down"></i> Export Report
+      </button>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto p-6 space-y-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-xl flex items-center gap-4">
+        <div class="p-3 bg-blue-500/10 text-blue-400 rounded-lg text-lg"><i class="fa-solid fa-vector-square"></i></div>
+        <div>
+          <div class="text-xs text-slate-400">Plot & Khatian</div>
+          <div class="text-base font-bold text-white" id="stat-plot">Plot 125 / Khat 456</div>
+        </div>
+      </div>
+      <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-xl flex items-center gap-4">
+        <div class="p-3 bg-emerald-500/10 text-emerald-400 rounded-lg text-lg"><i class="fa-solid fa-ruler-combined"></i></div>
+        <div>
+          <div class="text-xs text-slate-400">Total Area</div>
+          <div class="text-base font-bold text-white" id="stat-area">5.00 Decimal</div>
+        </div>
+      </div>
+      <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-xl flex items-center gap-4">
+        <div class="p-3 bg-purple-500/10 text-purple-400 rounded-lg text-lg"><i class="fa-solid fa-fingerprint"></i></div>
+        <div>
+          <div class="text-xs text-slate-400">SHA-256 Hash</div>
+          <div class="text-xs mono text-purple-300 font-semibold truncate w-36" id="stat-hash">e3b0c442...</div>
+        </div>
+      </div>
+      <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-xl flex items-center gap-4" id="kpi-status-box">
+        <div class="p-3 rounded-lg text-lg" id="stat-icon"><i class="fa-solid fa-circle-check"></i></div>
+        <div>
+          <div class="text-xs text-slate-400">Engine Status</div>
+          <div class="text-sm font-bold" id="stat-status">Verified</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div class="lg:col-span-5 space-y-6">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
+          <h3 class="text-sm font-semibold flex items-center gap-2 text-white mb-3">
+            <i class="fa-solid fa-file-shield text-emerald-400"></i> Digital Deed & OCR Status
+          </h3>
+          <div class="bg-slate-950 border border-slate-800/80 rounded-xl p-3 space-y-2 mb-4 text-xs">
+            <div class="flex justify-between"><span class="text-slate-400">Deed No:</span><span class="mono" id="doc-id">DEED-2015-884</span></div>
+            <div class="flex justify-between"><span class="text-slate-400">Current Owner:</span><span class="text-emerald-400" id="doc-owner">Person B</span></div>
+            <div class="flex justify-between"><span class="text-slate-400">Mutation Status:</span><span id="doc-mutation">Approved</span></div>
+          </div>
+          <h4 class="text-xs font-semibold text-slate-300 uppercase mb-2">Evidence-Based Flags:</h4>
+          <div id="flags-container" class="space-y-2"></div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
+          <h3 class="text-sm font-semibold flex items-center gap-2 text-white mb-3">
+            <i class="fa-solid fa-cart-shopping text-cyan-400"></i> Citizen Pre-Purchase Checklist
+          </h3>
+          <ul class="text-xs space-y-2" id="checklist-container"></ul>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 space-y-6">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
+          <h3 class="text-sm font-semibold text-white mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-diagram-project text-blue-400"></i> Land Relationship Graph (Chain of Title)
+          </h3>
+          <div class="bg-slate-950 rounded-xl p-5 border border-slate-800" id="graph-view"></div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
+          <h3 class="text-sm font-semibold text-white mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-timeline text-amber-400"></i> Historical Transfer Timeline
+          </h3>
+          <div class="border-l border-slate-800 ml-4 space-y-6" id="timeline-container"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
