@@ -8,12 +8,31 @@ body {
   font-family: 'JetBrains Mono', monospace;
 }
 
+/* Custom Leaflet Dark Mode Tiles */
+.leaflet-tile-pane {
+  filter: brightness(0.65) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3);
+}
+
+/* Laser Scanning Animation */
+@keyframes laserScan {
+  0% { top: 0%; opacity: 0; }
+  25% { opacity: 1; }
+  75% { opacity: 1; }
+  100% { top: 98%; opacity: 0; }
+}
+
+.laser-active {
+  display: block !important;
+  animation: laserScan 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #090d16;
+  background: #070b14;
 }
 ::-webkit-scrollbar-thumb {
   background: #1e293b;
@@ -23,12 +42,13 @@ body {
   background: #334155;
 }
 
+/* Print CSS */
 @media print {
   body {
     background: #ffffff !important;
     color: #000000 !important;
   }
-  header, #top-bar, .print\:hidden {
+  header, section, .print\:hidden, #gis-map {
     display: none !important;
   }
   #cert-modal {
