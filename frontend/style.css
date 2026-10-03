@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
 body {
   font-family: 'Hind Siliguri', sans-serif;
@@ -8,12 +8,29 @@ body {
   font-family: 'JetBrains Mono', monospace;
 }
 
+/* Custom animated connector */
+@keyframes flowLine {
+  0% { stroke-dashoffset: 20; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.flow-anim {
+  stroke-dasharray: 4;
+  animation: flowLine 1.5s linear infinite;
+}
+
 @media print {
-  header, button {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  header, #top-bar, .print\:hidden {
     display: none !important;
   }
-  body {
-    background-color: white !important;
-    color: black !important;
+  #cert-modal {
+    position: static !important;
+    display: block !important;
+    background: transparent !important;
+    padding: 0 !important;
   }
 }

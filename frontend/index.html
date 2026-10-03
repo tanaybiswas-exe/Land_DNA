@@ -3,119 +3,287 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LandDNA — Smart Land Verification Platform</title>
+  <title>LandDNA — Smart Land Verification & Forensic Engine</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen">
+<body class="bg-[#090d16] text-slate-100 min-h-screen antialiased selection:bg-emerald-500 selection:text-white">
 
-  <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50 px-6 py-3 flex items-center justify-between">
-    <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold text-xl">
-        <i class="fa-solid fa-dna"></i>
+  <!-- Top Announcement Bar -->
+  <div class="bg-gradient-to-r from-emerald-950/80 via-slate-900 to-indigo-950/80 border-b border-emerald-500/20 px-4 py-1.5 text-[11px] flex justify-between items-center text-slate-300">
+    <div class="flex items-center gap-2">
+      <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping mr-1"></span> লাইভ নোড
+      </span>
+      <span>ড্যাফোডিল ইন্টারন্যাশনাল ইউনিভার্সিটি — ল্যান্ডটেক ২০২৬ ইনোভেশন প্রোটোটাইপ</span>
+    </div>
+    <div class="flex items-center gap-4 mono text-[10px] text-slate-400">
+      <span>SHA-256 Ledger Active</span>
+      <span>API: Connected (127.0.0.1:8000)</span>
+      <span class="text-amber-400 font-medium"><i class="fa-solid fa-shield mr-1"></i>সিন্থেটিক ডেটাবেজ মোড</span>
+    </div>
+  </div>
+
+  <!-- Main Gov Header -->
+  <header class="border-b border-slate-800 bg-[#0c121e]/90 backdrop-blur sticky top-0 z-50 px-6 py-3.5 flex items-center justify-between">
+    <div class="flex items-center gap-4">
+      <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center text-white shadow-lg shadow-emerald-900/30">
+        <i class="fa-solid fa-fingerprint text-2xl"></i>
       </div>
       <div>
         <div class="flex items-center gap-2">
-          <span class="text-xl font-bold tracking-tight text-white">LandDNA</span>
-          <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-800">GovTech Prototype</span>
+          <h1 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+            Land<span class="text-emerald-400">DNA</span>
+          </h1>
+          <span class="text-[10px] px-2 py-0.5 rounded-md bg-slate-800 text-slate-300 border border-slate-700 font-mono">v2.4-PRO</span>
         </div>
-        <p class="text-xs text-slate-400">Digital Land Records & Fraud Detection Engine</p>
+        <p class="text-xs text-slate-400">স্মার্ট ভূমি রেকর্ড, চেইন ভেরিফিকেশন ও জালিয়াতি শনাক্তকরণ ইঞ্জিন</p>
       </div>
     </div>
 
-    <div class="flex items-center gap-2 bg-slate-950 p-1.5 rounded-xl border border-slate-800">
-      <span class="text-xs text-slate-400 px-2 font-medium">Judge Demo Switcher:</span>
-      <button onclick="loadScenario('clean')" id="btn-clean" class="text-xs px-3 py-1.5 rounded-lg bg-emerald-600 text-white font-medium">
-        <i class="fa-solid fa-check"></i> Clean Plot (125)
+    <!-- Quick Investigation Switcher for Judges -->
+    <div class="flex items-center bg-slate-900 border border-slate-800 p-1 rounded-xl gap-1">
+      <span class="text-xs text-slate-400 px-3 font-medium">লাইভ কেস:</span>
+      <button onclick="switchCase('clean')" id="btn-case-clean" class="text-xs px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white font-medium flex items-center gap-2 shadow-sm transition">
+        <i class="fa-solid fa-circle-check"></i> বৈধ জমি (দাগ ১২৫)
       </button>
-      <button onclick="loadScenario('fraud')" id="btn-fraud" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium">
-        <i class="fa-solid fa-triangle-exclamation"></i> Fraud & Double-Sale (204)
+      <button onclick="switchCase('fraud')" id="btn-case-fraud" class="text-xs px-3.5 py-1.5 rounded-lg bg-slate-800/80 text-slate-300 font-medium hover:text-white flex items-center gap-2 transition">
+        <i class="fa-solid fa-triangle-exclamation text-rose-400"></i> জালিয়াতি ও ডাবল সেল (দাগ ২০৪)
       </button>
     </div>
 
-    <div class="flex items-center gap-3 text-xs">
-      <span class="px-2.5 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-300 rounded-lg">
-        <i class="fa-solid fa-shield-halved mr-1"></i> Synthetic Data Mode
-      </span>
-      <button onclick="window.print()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg border border-slate-700">
-        <i class="fa-solid fa-file-arrow-down"></i> Export Report
+    <div class="flex items-center gap-3">
+      <button onclick="openVerificationModal()" class="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 flex items-center gap-2 transition">
+        <i class="fa-solid fa-file-shield text-emerald-400"></i> সিটিজেন সার্টিফিকেট ভিউ
+      </button>
+      <button onclick="triggerOCRUpload()" class="px-3.5 py-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold rounded-xl shadow-lg shadow-emerald-500/20 flex items-center gap-2 transition">
+        <i class="fa-solid fa-cloud-arrow-up"></i> দলিল স্ক্যান / OCR
       </button>
     </div>
   </header>
 
-  <main class="max-w-7xl mx-auto p-6 space-y-6">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-      <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-xl flex items-center gap-4">
-        <div class="p-3 bg-blue-500/10 text-blue-400 rounded-lg text-lg"><i class="fa-solid fa-vector-square"></i></div>
-        <div>
-          <div class="text-xs text-slate-400">Plot & Khatian</div>
-          <div class="text-base font-bold text-white" id="stat-plot">Plot 125 / Khat 456</div>
+  <!-- Main Container -->
+  <main class="max-w-[1440px] mx-auto p-6 space-y-6">
+
+    <!-- Land Profile Header Card -->
+    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-slate-900 via-[#0e1626] to-slate-900 border border-slate-800 p-6 shadow-2xl">
+      <div class="absolute -right-10 -top-10 w-60 h-60 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 relative z-10">
+        <div class="space-y-2">
+          <div class="flex items-center gap-3">
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-slate-800 text-emerald-400 border border-slate-700" id="badge-parcel-id">
+              PARCEL-BD-DHK-125
+            </span>
+            <span class="text-xs text-slate-400 flex items-center gap-1">
+              <i class="fa-solid fa-location-dot text-rose-500"></i> তেজগাঁও, ঢাকা | মৌজা: বেগুনবাড়ী
+            </span>
+          </div>
+          <h2 class="text-2xl font-bold text-white tracking-tight" id="parcel-title">
+            দাগ নং ১২৫ / খতিয়ান নং ৪৫৬ (আরএস)
+          </h2>
+          <p class="text-xs text-slate-400 flex items-center gap-4">
+            <span>মালিকানা স্বত্ব: <strong class="text-slate-200 font-semibold" id="parcel-owner">মোঃ আনিসুর রহমান</strong></span>
+            <span>সর্বশেষ হস্তান্তর: <strong class="text-slate-200 font-semibold" id="parcel-last-tx">২০১৫ (দলিল #৮৮৪)</strong></span>
+          </p>
+        </div>
+
+        <!-- Verification Banner Widget -->
+        <div class="flex items-center gap-4 bg-slate-950/70 border p-4 rounded-xl backdrop-blur" id="verdict-box">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" id="verdict-icon">
+            <i class="fa-solid fa-shield-check"></i>
+          </div>
+          <div>
+            <div class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">ফরেনসিক ভেরিফিকেশন ফলাফল</div>
+            <div class="text-base font-bold" id="verdict-text">কোনো অসঙ্গতি পরিলক্ষিত হয়নি</div>
+            <div class="text-xs text-slate-400 mt-0.5" id="verdict-subtext">সকল দলিল ও নামজারি সম্পূর্ণ সুসংগত</div>
+          </div>
         </div>
       </div>
-      <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-xl flex items-center gap-4">
-        <div class="p-3 bg-emerald-500/10 text-emerald-400 rounded-lg text-lg"><i class="fa-solid fa-ruler-combined"></i></div>
+
+      <!-- Quick Metrics Strip -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-6 border-t border-slate-800/80 text-xs">
         <div>
-          <div class="text-xs text-slate-400">Total Area</div>
-          <div class="text-base font-bold text-white" id="stat-area">5.00 Decimal</div>
+          <div class="text-slate-400">জমির আয়তন</div>
+          <div class="text-sm font-bold text-slate-100 mt-0.5" id="meta-area">৫.০০ শতাংশ (Decimal)</div>
         </div>
-      </div>
-      <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-xl flex items-center gap-4">
-        <div class="p-3 bg-purple-500/10 text-purple-400 rounded-lg text-lg"><i class="fa-solid fa-fingerprint"></i></div>
         <div>
-          <div class="text-xs text-slate-400">SHA-256 Hash</div>
-          <div class="text-xs mono text-purple-300 font-semibold truncate w-36" id="stat-hash">e3b0c442...</div>
+          <div class="text-slate-400">ডিজিটাল মিউটেশন স্ট্যাটাস</div>
+          <div class="text-sm font-bold text-emerald-400 mt-0.5 flex items-center gap-1.5" id="meta-mutation">
+            <i class="fa-solid fa-circle-check"></i> মঞ্জুরকৃত ও কার্যকর
+          </div>
         </div>
-      </div>
-      <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-xl flex items-center gap-4" id="kpi-status-box">
-        <div class="p-3 rounded-lg text-lg" id="stat-icon"><i class="fa-solid fa-circle-check"></i></div>
         <div>
-          <div class="text-xs text-slate-400">Engine Status</div>
-          <div class="text-sm font-bold" id="stat-status">Verified</div>
+          <div class="text-slate-400">ডিজিটাল ফিঙ্গারপ্রিন্ট (SHA-256)</div>
+          <div class="text-xs mono text-purple-300 mt-1 truncate max-w-[220px]" id="meta-hash">
+            7f83b1657ff1fc53b92dc18148a1d65d...
+          </div>
+        </div>
+        <div>
+          <div class="text-slate-400">সরকারি খাস/অধিগ্রহণ স্ট্যাটাস</div>
+          <div class="text-sm font-bold text-slate-200 mt-0.5 flex items-center gap-1.5">
+            <i class="fa-solid fa-check text-emerald-400"></i> দায়মুক্ত (Non-encumbered)
+          </div>
         </div>
       </div>
     </div>
 
+    <!-- Core Grid Layout -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-      <div class="lg:col-span-5 space-y-6">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
-          <h3 class="text-sm font-semibold flex items-center gap-2 text-white mb-3">
-            <i class="fa-solid fa-file-shield text-emerald-400"></i> Digital Deed & OCR Status
-          </h3>
-          <div class="bg-slate-950 border border-slate-800/80 rounded-xl p-3 space-y-2 mb-4 text-xs">
-            <div class="flex justify-between"><span class="text-slate-400">Deed No:</span><span class="mono" id="doc-id">DEED-2015-884</span></div>
-            <div class="flex justify-between"><span class="text-slate-400">Current Owner:</span><span class="text-emerald-400" id="doc-owner">Person B</span></div>
-            <div class="flex justify-between"><span class="text-slate-400">Mutation Status:</span><span id="doc-mutation">Approved</span></div>
-          </div>
-          <h4 class="text-xs font-semibold text-slate-300 uppercase mb-2">Evidence-Based Flags:</h4>
-          <div id="flags-container" class="space-y-2"></div>
-        </div>
 
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
-          <h3 class="text-sm font-semibold flex items-center gap-2 text-white mb-3">
-            <i class="fa-solid fa-cart-shopping text-cyan-400"></i> Citizen Pre-Purchase Checklist
-          </h3>
-          <ul class="text-xs space-y-2" id="checklist-container"></ul>
-        </div>
-      </div>
-
+      <!-- LEFT: Chain Graph & Intelligence (7 Cols) -->
       <div class="lg:col-span-7 space-y-6">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
-          <h3 class="text-sm font-semibold text-white mb-4 flex items-center gap-2">
-            <i class="fa-solid fa-diagram-project text-blue-400"></i> Land Relationship Graph (Chain of Title)
-          </h3>
-          <div class="bg-slate-950 rounded-xl p-5 border border-slate-800" id="graph-view"></div>
+
+        <!-- Interactive Node Graph -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-diagram-project text-emerald-400"></i> ডিজিটাল চেইন অব টাইটেল (Visual Land Graph)
+              </h3>
+              <p class="text-xs text-slate-400">মূল সেটেলমেন্ট থেকে বর্তমান নামজারি পর্যন্ত সম্পূর্ণ সম্পর্কের ম্যাপিং</p>
+            </div>
+            <span class="text-[11px] px-2 py-1 rounded bg-slate-950 border border-slate-800 text-slate-400 mono">
+              CS ➔ SA ➔ RS ➔ BS ➔ Mutation
+            </span>
+          </div>
+
+          <!-- Graph Canvas Container -->
+          <div class="bg-[#070b12] rounded-xl border border-slate-800/80 p-6 min-h-[220px] flex items-center justify-center relative overflow-hidden" id="graph-container">
+            <!-- Rendered by JS -->
+          </div>
         </div>
 
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
-          <h3 class="text-sm font-semibold text-white mb-4 flex items-center gap-2">
-            <i class="fa-solid fa-timeline text-amber-400"></i> Historical Transfer Timeline
-          </h3>
-          <div class="border-l border-slate-800 ml-4 space-y-6" id="timeline-container"></div>
+        <!-- Historical Transfer Timeline -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-timeline text-amber-400"></i> ঐতিহাসিক দলিল ও হস্তান্তর টাইমলাইন
+            </h3>
+            <span class="text-xs text-slate-400 font-mono" id="timeline-count">৩টি রেকর্ড পাওয়া গেছে</span>
+          </div>
+
+          <div class="space-y-4 pl-2" id="timeline-list">
+            <!-- Timeline injected by JS -->
+          </div>
         </div>
+
       </div>
+
+      <!-- RIGHT: Explainable Fraud Engine & Citizen Pre-Purchase (5 Cols) -->
+      <div class="lg:col-span-5 space-y-6">
+
+        <!-- Evidence-Based Discrepancy Engine -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-sm font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-magnifying-glass-chart text-rose-400"></i> ফরেনসিক অ্যানালাইসিস ও অসঙ্গতি প্রমাণ
+            </h3>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Explainable Engine</span>
+          </div>
+          <p class="text-xs text-slate-400 mb-4">
+            সরাসরি অনুমান নির্ভর কোনো সিদ্ধান্ত নয়; প্রতিটি আপত্তি লিগ্যাল রেকর্ড ও দলিলের অমিল প্রমাণের ভিত্তিতে চিহ্নিত।
+          </p>
+
+          <div class="space-y-3" id="discrepancy-flags">
+            <!-- Flags injected by JS -->
+          </div>
+        </div>
+
+        <!-- Citizen Pre-Purchase Verification Checklist -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-list-check text-cyan-400"></i> জমি কেনার পূর্ববর্তী ভেরিফিকেশন চেকলিস্ট
+            </h3>
+            <span class="text-[11px] text-emerald-400 font-medium">নাগরিক সহায়তা</span>
+          </div>
+
+          <div class="space-y-2.5 text-xs" id="checklist-items">
+            <!-- Checklist injected by JS -->
+          </div>
+        </div>
+
+      </div>
+
     </div>
   </main>
+
+  <!-- Modal: Citizen Pre-Purchase Official Certificate -->
+  <div id="cert-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white text-slate-900 max-w-2xl w-full rounded-2xl p-8 shadow-2xl space-y-6 border border-slate-300 relative print:p-0 print:border-none print:shadow-none">
+      
+      <!-- Modal Header -->
+      <div class="border-b pb-4 flex justify-between items-start">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-xl bg-emerald-700 text-white flex items-center justify-center font-bold text-xl">
+            DNA
+          </div>
+          <div>
+            <h2 class="text-lg font-bold text-slate-900 tracking-tight">ডিজিটাল ভূমি সত্যতা ও ঝুঁকি পরীক্ষণ সনদ</h2>
+            <p class="text-xs text-slate-500 font-mono">LandDNA Independent Forensic Verification Report</p>
+          </div>
+        </div>
+        <button onclick="closeVerificationModal()" class="text-slate-400 hover:text-slate-600 text-xl print:hidden">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Report Body -->
+      <div class="space-y-4 text-xs leading-relaxed">
+        <div class="grid grid-cols-2 gap-4 bg-slate-50 p-4 rounded-xl border border-slate-200">
+          <div>
+            <span class="text-slate-500">দাগ ও খতিয়ান:</span>
+            <div class="font-bold text-sm text-slate-800" id="cert-plot">দাগ ১২৫, খতিয়ান ৪৫৬</div>
+          </div>
+          <div>
+            <span class="text-slate-500">মালিকানা রেকর্ড:</span>
+            <div class="font-bold text-sm text-slate-800" id="cert-owner">মোঃ আনিসুর রহমান</div>
+          </div>
+          <div>
+            <span class="text-slate-500">আয়তন ও অবস্থান:</span>
+            <div class="font-semibold text-slate-700" id="cert-area">৫.০০ শতাংশ (তেজগাঁও, ঢাকা)</div>
+          </div>
+          <div>
+            <span class="text-slate-500">ডিজিটাল হ্যাশ ভেরিফিকেশন:</span>
+            <div class="font-mono text-[10px] text-slate-600 truncate" id="cert-hash">7f83b1657ff1... (Matched)</div>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-slate-800 uppercase tracking-wide text-[11px] mb-2">ফরেনসিক ফাইন্ডিংস ও পরামর্শ:</h4>
+          <div class="p-3.5 rounded-xl border" id="cert-verdict-box">
+            <!-- Injected by JS -->
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between text-[11px] text-slate-500 pt-4 border-t">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-qrcode text-3xl text-slate-800"></i>
+            <div>
+              <div>কিউআর কোড স্ক্যান করে অনলাইন সত্যতা যাচাই করুন</div>
+              <div class="font-mono text-[10px]">Verification ID: LDNA-2026-X992</div>
+            </div>
+          </div>
+          <div class="text-right">
+            <div>স্বয়ংক্রিয়ভাবে জেনারেটকৃত সনদ</div>
+            <div class="font-semibold text-slate-800">LandDNA Intelligence Engine</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="flex justify-end gap-3 pt-2 print:hidden">
+        <button onclick="closeVerificationModal()" class="px-4 py-2 border rounded-xl text-xs font-semibold hover:bg-slate-50 text-slate-600">
+          বন্ধ করুন
+        </button>
+        <button onclick="window.print()" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold shadow flex items-center gap-2">
+          <i class="fa-solid fa-print"></i> সনদ প্রিন্ট / ডাউনলোড
+        </button>
+      </div>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>
