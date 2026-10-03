@@ -238,7 +238,7 @@ function renderUI() {
   document.getElementById('verdict-text').innerText = data.verdict.title;
   document.getElementById('verdict-subtext').innerText = data.verdict.subtext;
 
-  // Mutation Text
+  // Mutation
   const mut = document.getElementById('meta-mutation');
   if (data.verdict.status === 'CLEAN') {
     mut.className = "text-sm font-bold text-emerald-400 mt-0.5";
@@ -283,7 +283,7 @@ function renderUI() {
     `;
   });
 
-  // Discrepancy Flags
+  // Flags
   const fBox = document.getElementById('discrepancy-flags');
   fBox.innerHTML = '';
   data.flags.forEach(f => {
@@ -300,7 +300,7 @@ function renderUI() {
     `;
   });
 
-  // Faraez Heirs
+  // Heirs
   const hBox = document.getElementById('heirs-container');
   hBox.innerHTML = '';
   data.heirs.forEach(h => {
@@ -403,6 +403,9 @@ function resetOCRState() {
   document.getElementById('ocr-res-area').innerText = "--";
   document.getElementById('ocr-res-hash').innerText = "--";
   
+  const downloadBtn = document.getElementById('btn-download-ocr-report');
+  if (downloadBtn) downloadBtn.classList.add('hidden');
+
   const btn = document.getElementById('btn-run-ocr');
   btn.disabled = false;
   btn.innerHTML = `<i class="fa-solid fa-bolt"></i> স্ক্যান ও এক্সট্র্যাক্ট শুরু করুন`;
@@ -422,7 +425,6 @@ function handleFileSelect(event) {
   document.getElementById('ocr-status-text').innerText = `${file.name} ফাইলটি প্রস্তুত হয়েছে`;
   document.getElementById('ocr-sub-text').innerText = `সাইজ: ${(file.size / 1024).toFixed(1)} KB | স্ক্যান শুরু করতে নিচের বাটনে চাপুন`;
 
-  // Image preview handle
   if (file.type.startsWith('image/')) {
     const reader = new FileReader();
     reader.onload = function(e) {
@@ -461,7 +463,18 @@ function runOCRScanSimulation() {
     document.getElementById('ocr-res-plot').innerText = data.title;
     document.getElementById('ocr-res-area').innerText = data.area;
     document.getElementById('ocr-res-hash').innerText = generatedHash;
+
+    const downloadBtn = document.getElementById('btn-download-ocr-report');
+    if (downloadBtn) downloadBtn.classList.remove('hidden');
   }, 1600);
+}
+
+function downloadOCRReport() {
+  closeOCRModal();
+  openVerificationModal();
+  setTimeout(() => {
+    window.print();
+  }, 350);
 }
 
 window.onload = () => {
