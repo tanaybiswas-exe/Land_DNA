@@ -1,5 +1,6 @@
 let map = null;
 let currentPolygon = null;
+let selectedDocumentFile = null;
 
 const cases = {
   clean: {
@@ -237,7 +238,7 @@ function renderUI() {
   document.getElementById('verdict-text').innerText = data.verdict.title;
   document.getElementById('verdict-subtext').innerText = data.verdict.subtext;
 
-  // Mutation
+  // Mutation Text
   const mut = document.getElementById('meta-mutation');
   if (data.verdict.status === 'CLEAN') {
     mut.className = "text-sm font-bold text-emerald-400 mt-0.5";
@@ -250,7 +251,7 @@ function renderUI() {
   // Graph
   document.getElementById('graph-container').innerHTML = data.graphHtml;
 
-  // Survey Table
+  // Survey Cross-Matcher Table
   const sTable = document.getElementById('survey-table-body');
   sTable.innerHTML = '';
   data.surveys.forEach(s => {
@@ -282,7 +283,7 @@ function renderUI() {
     `;
   });
 
-  // Flags
+  // Discrepancy Flags
   const fBox = document.getElementById('discrepancy-flags');
   fBox.innerHTML = '';
   data.flags.forEach(f => {
@@ -299,7 +300,7 @@ function renderUI() {
     `;
   });
 
-  // Heirs
+  // Faraez Heirs
   const hBox = document.getElementById('heirs-container');
   hBox.innerHTML = '';
   data.heirs.forEach(h => {
@@ -389,33 +390,77 @@ function closeOCRModal() {
 function resetOCRState() {
   const laser = document.getElementById('scanner-laser');
   laser.classList.remove('laser-active');
-  document.getElementById('ocr-status-text').innerText = "দলিল বা খতিয়ান কপি আপলোড প্রস্তুত";
+  
+  document.getElementById('ocr-icon').classList.remove('hidden');
+  document.getElementById('ocr-preview-img').classList.add('hidden');
+  document.getElementById('ocr-preview-img').src = '';
+  
+  document.getElementById('ocr-status-text').innerText = "দলিল বা খতিয়ান কপি আপলোড করুন";
+  document.getElementById('ocr-sub-text').innerText = "ফরম্যাট: PDF / JPG (সর্বোচ্চ ১০ মেগাবাইট)";
+  document.getElementById('ocr-res-filename').innerText = "কোনো ফাইল নেই";
   document.getElementById('ocr-res-deed').innerText = "--";
   document.getElementById('ocr-res-plot').innerText = "--";
   document.getElementById('ocr-res-area').innerText = "--";
   document.getElementById('ocr-res-hash').innerText = "--";
-  document.getElementById('btn-run-ocr').disabled = false;
-  document.getElementById('btn-run-ocr').innerHTML = `<i class="fa-solid fa-bolt"></i> স্ক্যান ও এক্সট্র্যাক্ট শুরু করুন`;
+  
+  const btn = document.getElementById('btn-run-ocr');
+  btn.disabled = false;
+  btn.innerHTML = `<i class="fa-solid fa-bolt"></i> স্ক্যান ও এক্সট্র্যাক্ট শুরু করুন`;
+  
+  selectedDocumentFile = null;
+  document.getElementById('doc-file-input').value = "";
+  document.getElementById('camera-file-input').value = "";
+}
+
+// File / Camera Select Handler
+function handleFileSelect(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  selectedDocumentFile = file;
+  document.getElementById('ocr-res-filename').innerText = file.name;
+  document.getElementById('ocr-status-text').innerText = `${file.name} ফাইলটি প্রস্তুত হয়েছে`;
+  document.getElementById('ocr-sub-text').innerText = `সাইজ: ${(file.size / 1024).toFixed(1)} KB | স্ক্যান শুরু করতে নিচের বাটনে চাপুন`;
+
+  // Image preview handle
+  if (file.type.startsWith('image/')) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const img = document.getElementById('ocr-preview-img');
+      img.src = e.target.result;
+      img.classList.remove('hidden');
+      document.getElementById('ocr-icon').classList.add('hidden');
+    };
+    reader.readAsDataURL(file);
+  } else {
+    document.getElementById('ocr-preview-img').classList.add('hidden');
+    document.getElementById('ocr-icon').classList.remove('hidden');
+  }
 }
 
 function runOCRScanSimulation() {
   const laser = document.getElementById('scanner-laser');
   const btn = document.getElementById('btn-run-ocr');
+  
   laser.classList.add('laser-active');
   btn.disabled = true;
-  btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> প্রসেসিং হচ্ছে...`;
-  document.getElementById('ocr-status-text').innerText = "OCR বাংলা টেক্সট রিকগনিশন ও হ্যাশিং চলছে...";
+  btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> স্ক্যানিং ও OCR প্রসেসিং চলছে...`;
+  document.getElementById('ocr-status-text').innerText = "বাংলা হরফ বিশ্লেষণ ও ক্রিপ্টো হ্যাশিং প্রসেসিং হচ্ছে...";
 
   setTimeout(() => {
     laser.classList.remove('laser-active');
     btn.innerHTML = `<i class="fa-solid fa-check"></i> এক্সট্র্যাক্ট সম্পন্ন`;
-    document.getElementById('ocr-status-text').innerText = "মেটাডেটা সফলভাবে নিষ্কাশন করা হয়েছে!";
+    document.getElementById('ocr-status-text').innerText = "দলিলের মেটাডেটা সফলভাবে নিষ্কাশন করা হয়েছে!";
     
     const data = cases[currentCase];
+    const generatedHash = selectedDocumentFile 
+      ? "e83f" + Math.random().toString(16).substring(2, 10) + data.docHash.substring(12) 
+      : data.docHash;
+
     document.getElementById('ocr-res-deed').innerText = data.docId;
     document.getElementById('ocr-res-plot').innerText = data.title;
     document.getElementById('ocr-res-area').innerText = data.area;
-    document.getElementById('ocr-res-hash').innerText = data.docHash;
+    document.getElementById('ocr-res-hash').innerText = generatedHash;
   }, 1600);
 }
 
