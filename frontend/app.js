@@ -1,3 +1,6 @@
+let map = null;
+let currentPolygon = null;
+
 const cases = {
   clean: {
     parcelId: "PARCEL-BD-DHK-125",
@@ -10,7 +13,6 @@ const cases = {
     mutationStatus: "মঞ্জুরকৃত ও সক্রিয়",
     docId: "DEED-2015-884",
     docHash: "7f83b1657ff1fc53b92dc18148a1d65dfc2d4b1fa3d677284addd200126d9069",
-    docMutation: "MUT-DHK-2016-441 (অনুমোদিত)",
     plainSummary: "এই দলিলটি সম্পূর্ণ বৈধ ও নিঃস্বত্ব বিক্রয় কবলা দলিল। মূল মালিক আব্দুল করিম (আরএস খতিয়ান ৪৫৬) ২০১৫ সালে সম্পূর্ণ ৫.০০ শতাংশ জমি বর্তমান মালিক আনিসুর রহমানের নিকট রেজিস্ট্রি সম্পাদন করেছেন। পরবর্তীতে ২০১৬ সালে এসিল্যান্ড অফিস কর্তৃক ই-নামজারি সম্পন্ন হয়েছে। কোনো উত্তরাধিকার সংক্রান্ত জটিলতা বা অতিরিক্ত হস্তান্তর নেই।",
     verdict: {
       status: "CLEAN",
@@ -78,8 +80,14 @@ const cases = {
       { ok: true, text: "উত্তরাধিকার ফারায়েজ অংশের মধ্যে জমি বিক্রি সীমাবদ্ধ" },
       { ok: true, text: "কোনো বিচারাধীন মামলা বা দ্বৈত বায়নাপত্র নেই" }
     ],
-    gisLabel: "দাগ ১২৫ (বৈধ বাউন্ডারি)",
-    gisCoords: "23.7501° N, 90.3901° E — সীমানা সম্পূর্ণ নিরাপদ ও বিরোধমুক্ত",
+    gisCoords: [23.7501, 90.3901],
+    gisPolygon: [
+      [23.7504, 90.3897],
+      [23.7506, 90.3906],
+      [23.7497, 90.3909],
+      [23.7495, 90.3900]
+    ],
+    gisStatusText: "কোনো সড়ক বা সরকারি খাস জমিতে ওভারল্যাপ নেই",
     certNote: "উক্ত জমির চেইন অব টাইটেল, দাগের লেজার ব্যালেন্স ও ফারায়েজ যাচাইপূর্বক কোনো অনিয়ম পাওয়া যায়নি। জমিটি বর্তমান রেকর্ডে হস্তান্তরযোগ্য ও নিরাপদ হিসেবে চিহ্নিত।"
   },
 
@@ -94,7 +102,6 @@ const cases = {
     mutationStatus: "স্থগিত / প্রতারণা ফ্ল্যাগড",
     docId: "DEED-2023-F91",
     docHash: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    docMutation: "MUT-DHK-2023-R99 (বাতিলকৃত)",
     plainSummary: "সতর্কতা: দলিল #DEED-2023-F91-এ গুরুতর প্রতারণা রয়েছে। পূর্ববর্তী ২০২২ সালের দলিলে মূল মালিক আব্দুর রউফ ৪.০০ শতক বিক্রি করায় দাগে অবশিষ্ট ছিল মাত্র ২.০০ শতক। অথচ সেলিম চৌধুরী (যিনি কোনো ওয়ারিশ বা ক্রেতা নন) সম্পূর্ণ ৬.০০ শতক জমি কামরুল হাসানের নিকট বিক্রির জাল দলিল তৈরি করেছেন।",
     verdict: {
       status: "FRAUD",
@@ -164,18 +171,55 @@ const cases = {
       { ok: false, text: "বিএস জরিপের রেকর্ডে অসঙ্গতি রয়েছে" },
       { ok: true, text: "সরকারি খাস বা পরিত্যক্ত তালিকাভুক্ত নয়" }
     ],
-    gisLabel: "দাগ ২০৪ (বিরোধপূর্ণ সীমানা)",
-    gisCoords: "23.7610° N, 90.3810° E — ডাবল সেলিং ও টাইটেল কনফ্লিক্ট বিদ্যমান",
+    gisCoords: [23.7610, 90.3810],
+    gisPolygon: [
+      [23.7614, 90.3805],
+      [23.7618, 90.3815],
+      [23.7607, 90.3820],
+      [23.7602, 90.3809]
+    ],
+    gisStatusText: "সতর্কতা: ডাবল সেলিং ও টাইটেল কনফ্লিক্ট বাউন্ডারিতে ফ্ল্যাগড",
     certNote: "সতর্কতা: উক্ত দাগে দ্বৈত বিক্রয়ের সুস্পষ্ট প্রমাণ, দাগ ব্যালেন্স ঘাটতি এবং জরিপে অমিল পাওয়া গেছে। জমিটি উচ্চ ঝুঁকিপূর্ণ।"
   }
 };
 
 let currentCase = 'clean';
 
+function initMap() {
+  if (map) return;
+  map = L.map('gis-map').setView([23.7501, 90.3901], 16);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+}
+
+function updateMap(data) {
+  if (!map) initMap();
+  map.setView(data.gisCoords, 16);
+
+  if (currentPolygon) {
+    map.removeLayer(currentPolygon);
+  }
+
+  const color = data.verdict.status === 'CLEAN' ? '#10b981' : '#f43f5e';
+  currentPolygon = L.polygon(data.gisPolygon, {
+    color: color,
+    fillColor: color,
+    fillOpacity: 0.35,
+    weight: 2
+  }).addTo(map);
+
+  currentPolygon.bindPopup(`<b>${data.title}</b><br>${data.owner}`).openPopup();
+  document.getElementById('gis-coords-display').innerHTML = `<i class="fa-solid fa-crosshairs text-emerald-400 mr-1"></i>${data.gisCoords[0]}° N, ${data.gisCoords[1]}° E`;
+  document.getElementById('gis-status-display').innerHTML = data.verdict.status === 'CLEAN' 
+    ? `<i class="fa-solid fa-circle-check text-emerald-400 mr-1"></i>${data.gisStatusText}` 
+    : `<i class="fa-solid fa-triangle-exclamation text-rose-400 mr-1"></i>${data.gisStatusText}`;
+}
+
 function renderUI() {
   const data = cases[currentCase];
 
-  // Badges & Meta
   document.getElementById('badge-parcel-id').innerText = data.parcelId;
   document.getElementById('parcel-title').innerText = data.title;
   document.getElementById('parcel-owner').innerText = data.owner;
@@ -185,20 +229,15 @@ function renderUI() {
   document.getElementById('meta-timestamp').innerText = data.timestamp;
   document.getElementById('plain-bangla-text').innerText = data.plainSummary;
 
-  // Document Block
-  document.getElementById('doc-id').innerText = data.docId;
-  document.getElementById('doc-hash').innerText = data.docHash;
-  document.getElementById('doc-mutation').innerText = data.docMutation;
-
   // Verdict Box
   const vBox = document.getElementById('verdict-box');
-  vBox.className = `flex items-center gap-4 border p-4 rounded-xl backdrop-blur ${data.verdict.badgeClass}`;
+  vBox.className = `flex items-center gap-4 border p-4 rounded-xl backdrop-blur-md shadow-lg ${data.verdict.badgeClass}`;
   document.getElementById('verdict-icon').className = `w-12 h-12 rounded-xl flex items-center justify-center text-2xl ${data.verdict.iconClass}`;
   document.getElementById('verdict-icon').innerHTML = `<i class="fa-solid ${data.verdict.icon}"></i>`;
   document.getElementById('verdict-text').innerText = data.verdict.title;
   document.getElementById('verdict-subtext').innerText = data.verdict.subtext;
 
-  // Mutation Text
+  // Mutation
   const mut = document.getElementById('meta-mutation');
   if (data.verdict.status === 'CLEAN') {
     mut.className = "text-sm font-bold text-emerald-400 mt-0.5";
@@ -217,11 +256,11 @@ function renderUI() {
   data.surveys.forEach(s => {
     sTable.innerHTML += `
       <tr class="hover:bg-slate-800/40 transition">
-        <td class="py-2 font-mono text-emerald-400 font-semibold">${s.gen}</td>
-        <td class="py-2">${s.khat}</td>
-        <td class="py-2">${s.plot}</td>
-        <td class="py-2 font-medium ${s.area.includes('অনিয়ম') ? 'text-rose-400 font-bold' : ''}">${s.area}</td>
-        <td class="py-2 text-slate-400">${s.owner}</td>
+        <td class="py-2.5 px-3 font-mono text-emerald-400 font-semibold">${s.gen}</td>
+        <td class="py-2.5 px-3">${s.khat}</td>
+        <td class="py-2.5 px-3">${s.plot}</td>
+        <td class="py-2.5 px-3 font-medium ${s.area.includes('অনিয়ম') ? 'text-rose-400 font-bold' : ''}">${s.area}</td>
+        <td class="py-2.5 px-3 text-slate-400">${s.owner}</td>
       </tr>
     `;
   });
@@ -243,7 +282,7 @@ function renderUI() {
     `;
   });
 
-  // Discrepancy Flags
+  // Flags
   const fBox = document.getElementById('discrepancy-flags');
   fBox.innerHTML = '';
   data.flags.forEach(f => {
@@ -251,7 +290,7 @@ function renderUI() {
     const border = isClean ? 'border-emerald-800/40 bg-emerald-950/20 text-emerald-300' : 'border-rose-800/60 bg-rose-950/30 text-rose-300';
     const icon = isClean ? 'fa-check' : 'fa-triangle-exclamation';
     fBox.innerHTML += `
-      <div class="border ${border} p-3 rounded-xl text-xs space-y-1">
+      <div class="border ${border} p-3.5 rounded-xl text-xs space-y-1">
         <div class="font-bold flex items-center gap-2 text-white">
           <i class="fa-solid ${icon} ${isClean ? 'text-emerald-400' : 'text-rose-400'}"></i> ${f.title}
         </div>
@@ -260,12 +299,12 @@ function renderUI() {
     `;
   });
 
-  // Faraez Heirs
+  // Heirs
   const hBox = document.getElementById('heirs-container');
   hBox.innerHTML = '';
   data.heirs.forEach(h => {
     hBox.innerHTML += `
-      <div class="flex items-center justify-between p-2 rounded-lg bg-slate-950 border border-slate-800/80">
+      <div class="flex items-center justify-between p-2.5 rounded-xl bg-[#050811] border border-slate-800">
         <div>
           <div class="font-semibold text-slate-200">${h.name}</div>
           <div class="text-[10px] text-teal-400">${h.rel} — ${h.fraction}</div>
@@ -275,23 +314,19 @@ function renderUI() {
     `;
   });
 
-  // GIS Overlay
-  document.getElementById('gis-plot-label').innerText = data.gisLabel;
-  document.getElementById('gis-coords-text').innerText = data.gisCoords;
-
-  // Pre-Purchase Checklist
+  // Checklist
   const cBox = document.getElementById('checklist-items');
   cBox.innerHTML = '';
   data.checklist.forEach(c => {
     cBox.innerHTML += `
-      <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-950/50 border border-slate-800/80">
+      <div class="flex items-center justify-between p-3 rounded-xl bg-[#050811] border border-slate-800">
         <span class="text-slate-300">${c.text}</span>
         <i class="fa-solid ${c.ok ? 'fa-circle-check text-emerald-400' : 'fa-circle-xmark text-rose-500'} text-sm"></i>
       </div>
     `;
   });
 
-  // Printable Modal Sync
+  // Modal Info Sync
   document.getElementById('cert-plot').innerText = data.title;
   document.getElementById('cert-owner').innerText = data.owner;
   document.getElementById('cert-area').innerText = `${data.area} (তেজগাঁও, ঢাকা)`;
@@ -305,30 +340,86 @@ function renderUI() {
     certVBox.className = "p-3.5 rounded-xl border border-rose-300 bg-rose-50 text-rose-900";
     certVBox.innerHTML = `<strong>⚠️ উচ্চ ঝুঁকিপূর্ণ সম্পত্তি:</strong> ${data.certNote}`;
   }
+
+  // Real Map Update
+  updateMap(data);
 }
 
 function switchCase(type) {
   currentCase = type;
   if (type === 'clean') {
-    document.getElementById('btn-case-clean').className = "text-xs px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white font-medium shadow-sm transition";
-    document.getElementById('btn-case-fraud').className = "text-xs px-3.5 py-1.5 rounded-lg bg-slate-800/80 text-slate-300 font-medium hover:text-white transition";
+    document.getElementById('btn-case-clean').className = "text-xs px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white font-semibold shadow-md shadow-emerald-900/40 transition";
+    document.getElementById('btn-case-fraud').className = "text-xs px-3.5 py-1.5 rounded-lg bg-slate-900 text-slate-300 font-semibold hover:text-white transition";
+    document.getElementById('search-plot-input').value = "১২৫";
+    document.getElementById('search-khatian').value = "456";
   } else {
-    document.getElementById('btn-case-fraud').className = "text-xs px-3.5 py-1.5 rounded-lg bg-rose-600 text-white font-medium shadow-sm transition";
-    document.getElementById('btn-case-clean').className = "text-xs px-3.5 py-1.5 rounded-lg bg-slate-800/80 text-slate-300 font-medium hover:text-white transition";
+    document.getElementById('btn-case-fraud').className = "text-xs px-3.5 py-1.5 rounded-lg bg-rose-600 text-white font-semibold shadow-md shadow-rose-900/40 transition";
+    document.getElementById('btn-case-clean').className = "text-xs px-3.5 py-1.5 rounded-lg bg-slate-900 text-slate-300 font-semibold hover:text-white transition";
+    document.getElementById('search-plot-input').value = "২০৪";
+    document.getElementById('search-khatian').value = "912";
   }
   renderUI();
 }
 
+function handleManualSearch() {
+  const val = document.getElementById('search-plot-input').value.trim();
+  if (val === '২০৪' || val === '204') {
+    switchCase('fraud');
+  } else {
+    switchCase('clean');
+  }
+}
+
+// Modal Handlers
 function openVerificationModal() {
   document.getElementById('cert-modal').classList.remove('hidden');
 }
-
 function closeVerificationModal() {
   document.getElementById('cert-modal').classList.add('hidden');
 }
 
-function triggerOCRUpload() {
-  alert("OCR সিমুলেটর সক্রিয়: সিন্থেটিক দলিল থেকে বাংলা পাঠ নিষ্কাশন ও SHA-256 হ্যাশ ম্যাচিং সফল হয়েছে!");
+function openOCRModal() {
+  document.getElementById('ocr-modal').classList.remove('hidden');
+  resetOCRState();
+}
+function closeOCRModal() {
+  document.getElementById('ocr-modal').classList.add('hidden');
 }
 
-window.onload = () => renderUI();
+function resetOCRState() {
+  const laser = document.getElementById('scanner-laser');
+  laser.classList.remove('laser-active');
+  document.getElementById('ocr-status-text').innerText = "দলিল বা খতিয়ান কপি আপলোড প্রস্তুত";
+  document.getElementById('ocr-res-deed').innerText = "--";
+  document.getElementById('ocr-res-plot').innerText = "--";
+  document.getElementById('ocr-res-area').innerText = "--";
+  document.getElementById('ocr-res-hash').innerText = "--";
+  document.getElementById('btn-run-ocr').disabled = false;
+  document.getElementById('btn-run-ocr').innerHTML = `<i class="fa-solid fa-bolt"></i> স্ক্যান ও এক্সট্র্যাক্ট শুরু করুন`;
+}
+
+function runOCRScanSimulation() {
+  const laser = document.getElementById('scanner-laser');
+  const btn = document.getElementById('btn-run-ocr');
+  laser.classList.add('laser-active');
+  btn.disabled = true;
+  btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> প্রসেসিং হচ্ছে...`;
+  document.getElementById('ocr-status-text').innerText = "OCR বাংলা টেক্সট রিকগনিশন ও হ্যাশিং চলছে...";
+
+  setTimeout(() => {
+    laser.classList.remove('laser-active');
+    btn.innerHTML = `<i class="fa-solid fa-check"></i> এক্সট্র্যাক্ট সম্পন্ন`;
+    document.getElementById('ocr-status-text').innerText = "মেটাডেটা সফলভাবে নিষ্কাশন করা হয়েছে!";
+    
+    const data = cases[currentCase];
+    document.getElementById('ocr-res-deed').innerText = data.docId;
+    document.getElementById('ocr-res-plot').innerText = data.title;
+    document.getElementById('ocr-res-area').innerText = data.area;
+    document.getElementById('ocr-res-hash').innerText = data.docHash;
+  }, 1600);
+}
+
+window.onload = () => {
+  initMap();
+  renderUI();
+};
