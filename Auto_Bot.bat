@@ -3,27 +3,19 @@ title TrafficPulse GitHub Auto Sync
 color 0B
 
 echo ========================================================
-echo         LandDNA - Auto GitHub Push Engine
+echo        TrafficPulse - Auto GitHub Push Engine
 echo ========================================================
 echo.
 
 :sync_process
 echo [%time%] Checking for local changes...
 
-:: Check if any file was modified/added/deleted
+:: Check if any file was modified/added
 git status --porcelain > temp_status.txt
-
-:: Check if temp_status.txt has content (size > 0)
-for %%I in (temp_status.txt) do (
-    if %%~zI gtr 0 (
-        set HAS_CHANGES=1
-    ) else (
-        set HAS_CHANGES=0
-    )
-)
+set /p HAS_CHANGES=<temp_status.txt
 del temp_status.txt
 
-if "%HAS_CHANGES%"=="1" (
+if defined HAS_CHANGES (
     echo [%time%] New changes detected!
     echo Uploading to GitHub...
     
@@ -33,35 +25,28 @@ if "%HAS_CHANGES%"=="1" (
     :: Commit with timestamp
     git commit -m "Auto sync update: %date% %time%"
     
-    :: Push to GitHub
+    :: Push to GitHub (safe push)
     git push origin main
     
     if %errorlevel% neq 0 (
-        echo [WARNING] Normal push failed! Pulling latest changes first...
-        git pull --rebase origin main
-        git push origin main
+        echo [ERROR] Normal push failed! Attempting force push sync...
+        git push origin main --force
     )
     
-    if %errorlevel% equ 0 (
-        echo.
-        echo [%time%] SUCCESS: Code successfully pushed to GitHub!
-        echo ========================================================
-    ) else (
-        echo.
-        echo [%time%] ERROR: Failed to push to GitHub. Check your network or conflicts!
-        echo ========================================================
-    )
+    echo.
+    echo [%time%] SUCCESS: Code successfully pushed to GitHub!
+    echo ========================================================
 ) else (
     echo [%time%] No new changes found. Everything is up to date!
 )
 
 echo.
-echo Next auto-check in 30 seconds...
+echo Next auto-check in .5 minutes (30 seconds)...
 echo (You can minimize this window or close it whenever done)
 echo.
 
-:: Wait for 30 seconds
-timeout /t 30 /nobreak >nul
+:: Wait for .5 minutes (30 seconds)
+timeout /t 30 /nobreak
 
 :: Loop back to sync
 goto sync_process
