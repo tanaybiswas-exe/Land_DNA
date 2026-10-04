@@ -15,7 +15,7 @@
   
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-[#050811] text-slate-100 min-h-screen antialiased selection:bg-emerald-500 selection:text-white pb-20 md:pb-12">
+<body class="bg-[#050811] text-slate-100 min-h-screen antialiased selection:bg-emerald-500 selection:text-white pb-24 md:pb-12">
 
   <!-- Top System Bar -->
   <div class="bg-[#03060c] border-b border-slate-800/80 px-4 md:px-6 py-2 text-[11px] flex flex-wrap justify-between items-center text-slate-400 gap-2">
@@ -23,12 +23,12 @@
       <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
       <span class="font-medium text-slate-300">ডিজিটাল ভূমি রেকর্ড ও স্মার্ট ভেরিফিকেশন ইঞ্জিন</span>
       <span class="hidden sm:inline text-slate-600">|</span>
-      <span class="hidden sm:inline">LandTech 2026 Initiative</span>
+      <span class="hidden sm:inline">LandTech 2026 Innovation Track</span>
     </div>
     <div class="flex items-center gap-3 mono text-[10px] ml-auto sm:ml-0">
       <span class="hidden md:inline text-slate-400"><i class="fa-solid fa-server text-emerald-400 mr-1"></i>Node: SVR-BD-01</span>
       <span class="px-2 py-0.5 rounded-full bg-amber-950/70 text-amber-300 border border-amber-800/80 font-sans">
-        <i class="fa-solid fa-shield mr-1"></i>সিন্থেটিক ডেটাবেজ
+        <i class="fa-solid fa-shield mr-1"></i>সিন্থেটিক ডেটাবেজ মোড
       </span>
     </div>
   </div>
@@ -56,6 +56,9 @@
 
         <!-- Phone Top Header Icons -->
         <div class="flex md:hidden gap-1.5">
+          <button onclick="toggleVoiceSpeech()" id="btn-voice-mobile" class="p-2.5 bg-slate-800 text-teal-400 rounded-lg text-xs border border-slate-700">
+            <i class="fa-solid fa-volume-high"></i>
+          </button>
           <button onclick="openOCRModal()" class="p-2.5 bg-emerald-500 text-slate-950 rounded-lg text-xs font-bold shadow">
             <i class="fa-solid fa-camera"></i>
           </button>
@@ -78,6 +81,10 @@
 
       <!-- Desktop Action Buttons -->
       <div class="hidden md:flex items-center gap-2.5">
+        <!-- Feature 1: Voice Button Desktop -->
+        <button onclick="toggleVoiceSpeech()" id="btn-voice-desktop" class="px-3.5 py-2 bg-teal-950/60 hover:bg-teal-900/80 text-teal-300 border border-teal-700/60 text-xs font-semibold rounded-xl flex items-center gap-2 transition">
+          <i class="fa-solid fa-volume-high text-teal-400"></i> <span id="voice-btn-label">ভয়েস রিপোর্ট শুনুন</span>
+        </button>
         <button onclick="openVerificationModal()" class="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 flex items-center gap-2 transition">
           <i class="fa-solid fa-file-contract text-emerald-400"></i> ভেরিফিকেশন রিপোর্ট
         </button>
@@ -89,7 +96,7 @@
     </div>
   </header>
 
-  <!-- Interactive Search Strip (Desktop and Mobile Common) -->
+  <!-- Interactive Search Strip -->
   <section class="max-w-[1440px] mx-auto px-4 md:px-8 pt-5">
     <div class="bg-gradient-to-r from-slate-900/90 via-[#0a101f] to-slate-900/90 border border-slate-800 rounded-2xl p-3.5 md:p-4 shadow-xl flex flex-col md:flex-row items-stretch md:items-center gap-3">
       <div class="flex-1">
@@ -118,7 +125,7 @@
     </div>
   </section>
 
-  <!-- ==================== MOBILE APP MENU DASHBOARD (SHUDHU PHONE-E DEKHA JABE) ==================== -->
+  <!-- MOBILE APP DASHBOARD MENU (SHUDHU PHONE-E DEKHA JABE) -->
   <section class="block md:hidden max-w-[1440px] mx-auto px-4 mt-4" id="mobile-app-menu-hub">
     <div class="bg-[#080e1c] border border-slate-800/80 rounded-2xl p-4 shadow-xl">
       <div class="flex items-center justify-between mb-3">
@@ -128,7 +135,6 @@
         <span class="text-[10px] text-slate-400">ট্যাপ করে নির্দিষ্ট বিভাগে যান</span>
       </div>
 
-      <!-- 6-App Grid System -->
       <div class="grid grid-cols-3 gap-2.5">
         <button onclick="selectMobileView('overview')" class="flex flex-col items-center justify-center p-3 rounded-xl bg-slate-900 border border-slate-800 text-center active:scale-95 transition">
           <i class="fa-solid fa-gauge-high text-emerald-400 text-lg mb-1"></i>
@@ -243,7 +249,7 @@
     <!-- 2-Column Responsive Layout -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
-      <!-- LEFT COLUMN: Chain Graph, Leaflet Map, Cross-Matcher, Timeline -->
+      <!-- LEFT COLUMN (7 Cols): Graph, Leaflet Map, Cross-Matcher, Escrow, Timeline -->
       <div class="lg:col-span-7 space-y-6">
 
         <!-- Title Chain Graph (Section: graph) -->
@@ -262,22 +268,64 @@
           <div class="bg-[#03060f] rounded-xl border border-slate-800/80 p-4 min-h-[170px] overflow-x-auto flex items-center justify-center" id="graph-container"></div>
         </div>
 
-        <!-- Real Leaflet Satellite GIS Map (Section: map) -->
+        <!-- Real Leaflet Satellite GIS Map + Feature 4: Ecological Indicator (Section: map) -->
         <div id="sec-map" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
           <div class="flex items-center justify-between mb-3">
             <div>
               <h3 class="text-sm font-bold text-white flex items-center gap-2">
-                <i class="fa-solid fa-earth-americas text-cyan-400"></i> লাইভ জিআইএস স্যাটেলাইট সীমানা ভিউ (GIS Map)
+                <i class="fa-solid fa-earth-americas text-cyan-400"></i> লাইভ জিআইএস স্যাটেলাইট সীমানা ভিউ (GIS Interactive Map)
               </h3>
-              <p class="text-[11px] text-slate-400">স্যাটেলাইট ম্যাপে দাগের বাস্তব সীমানা ও বাউন্ডারি যাচাই</p>
+              <p class="text-[11px] text-slate-400">স্যাটেলাইট ম্যাপে দাগের বাস্তব সীমানা ও নদীভাঙন/খাস জমি অডিট</p>
             </div>
             <span class="text-[9px] px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-cyan-300 mono">Live GIS</span>
           </div>
 
           <div id="gis-map" class="w-full h-56 md:h-64 rounded-xl border border-slate-800 z-10"></div>
+          
+          <!-- Ecological Warning Strip -->
+          <div class="mt-3 p-3 rounded-xl border bg-[#040812] flex items-center justify-between text-xs" id="eco-warning-box">
+            <div class="flex items-center gap-2.5">
+              <i class="fa-solid fa-water text-cyan-400 text-base" id="eco-icon"></i>
+              <div>
+                <span class="font-bold text-slate-200 block" id="eco-title">নদীভাঙন ও সীমানা অ্যানালাইসিস</span>
+                <span class="text-[11px] text-slate-400" id="eco-desc">স্যাটেলাইট পলিগন নিরীক্ষা চলছে...</span>
+              </div>
+            </div>
+            <span class="text-[10px] px-2 py-1 rounded font-mono font-bold" id="eco-badge">SECURE</span>
+          </div>
+
           <div class="flex flex-col sm:flex-row sm:items-center justify-between text-[11px] text-slate-400 mt-2 gap-1 px-1">
             <span id="gis-coords-display"><i class="fa-solid fa-crosshairs text-emerald-400 mr-1"></i>23.7501° N, 90.3901° E</span>
             <span class="text-emerald-400 font-medium" id="gis-status-display"><i class="fa-solid fa-circle-check mr-1"></i>কোনো সড়ক বা সরকারি জমিতে ওভারল্যাপ নেই</span>
+          </div>
+        </div>
+
+        <!-- Feature 3: Smart Contract Mutation Escrow Simulation -->
+        <div id="sec-escrow" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-file-invoice-dollar text-amber-400"></i> স্মার্ট মিউটেশন এসক্রো সিমুলেটর (Conditional Transfer)
+              </h3>
+              <p class="text-[11px] text-slate-400">বায়োমেট্রিক ও এসিল্যান্ডের নামজারি অনুমোদন ব্যতীত অর্থ হস্তান্তর হবে না</p>
+            </div>
+            <span class="text-[9px] px-2 py-0.5 rounded bg-amber-950 border border-amber-800 text-amber-300 mono">P4 Architecture</span>
+          </div>
+
+          <div class="bg-[#03060f] p-4 rounded-xl border border-slate-800 space-y-3">
+            <div class="flex items-center justify-between text-xs">
+              <span class="text-slate-400">বায়না ও লেনদেন অবস্থা:</span>
+              <span class="font-bold font-mono text-emerald-400" id="escrow-status-text">LOCKED_IN_ESCROW</span>
+            </div>
+            <!-- Progress Bar -->
+            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-teal-500 to-emerald-400 transition-all duration-700" id="escrow-bar" style="width: 100%;"></div>
+            </div>
+            <div class="grid grid-cols-3 text-[10px] text-slate-400 text-center pt-1">
+              <div id="escrow-step1" class="text-emerald-400 font-semibold"><i class="fa-solid fa-check mr-1"></i>রেজিস্ট্রি বায়না</div>
+              <div id="escrow-step2" class="text-emerald-400 font-semibold"><i class="fa-solid fa-check mr-1"></i>ডিজিটাল নামজারি</div>
+              <div id="escrow-step3" class="text-emerald-400 font-semibold"><i class="fa-solid fa-check mr-1"></i>অর্থ ছাড়</div>
+            </div>
           </div>
         </div>
 
@@ -322,8 +370,45 @@
 
       </div>
 
-      <!-- RIGHT COLUMN: Evidence Flags, Faraez, Security Checklist -->
+      <!-- RIGHT COLUMN (5 Cols): Litigation Radar, Biometric Score, Evidence Flags, Faraez, Security Checklist -->
       <div class="lg:col-span-5 space-y-6">
+
+        <!-- Feature 2: Conflict & Litigation Radar -->
+        <div id="sec-litigation" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-sm font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-gavel text-amber-400"></i> আইনি বিরোধ ও নিষেধাজ্ঞা রাডার (Litigation Radar)
+            </h3>
+            <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-amber-950 border border-amber-800 text-amber-300">P5 Tool</span>
+          </div>
+          <p class="text-[11px] text-slate-400 mb-3">আদালতের বিচারাধীন দেওয়ানি বা বণ্টন মোকদ্দমা রিয়েলটাইম মনিটরিং:</p>
+          <div class="p-3.5 rounded-xl border text-xs" id="litigation-display-box">
+            <!-- Dynamic Injected by JS -->
+          </div>
+        </div>
+
+        <!-- Feature 5: Biometric & NID Cross-Verification Score -->
+        <div id="sec-biometric" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-sm font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-id-card-clip text-emerald-400"></i> বায়োমেট্রিক ও সিন্থেটিক NID ভেরিফিকেশন
+            </h3>
+            <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Sec-8 Synthetic</span>
+          </div>
+          <div class="bg-[#03060f] p-3.5 rounded-xl border border-slate-800 space-y-2 text-xs">
+            <div class="flex justify-between items-center">
+              <span class="text-slate-400">রেকর্ডীয় বিক্রেতা NID:</span>
+              <span class="font-mono text-slate-200" id="nid-number-display">1994XXXXXX901</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-slate-400">বায়োমেট্রিক ম্যাচ স্কোর:</span>
+              <span class="font-mono font-bold text-emerald-400" id="nid-score-display">৯৯.২% (সম্পূর্ণ মিলেছে)</span>
+            </div>
+            <div class="text-[11px] text-slate-400 pt-1 border-t border-slate-800/80" id="nid-status-note">
+              জাতীয় পরিচয়পত্র ও সাব-রেজিস্ট্রির ফিঙ্গারপ্রিন্ট টোকেন যথাযথভাবে সার্টিফাইড।
+            </div>
+          </div>
+        </div>
 
         <!-- Forensic Evidence Flags (Section: flags) -->
         <div id="sec-flags" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
@@ -367,7 +452,7 @@
     </div>
   </main>
 
-  <!-- ==================== MOBILE APP BOTTOM NAVIGATION BAR (SHUDHU PHONE-E DEKHA JABE) ==================== -->
+  <!-- MOBILE APP BOTTOM NAVIGATION BAR (SHUDHU PHONE-E DEKHA JABE) -->
   <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-[#060a16]/95 border-t border-slate-800/90 backdrop-blur-xl z-40 px-3 py-2 flex justify-around items-center text-[10px]">
     <button onclick="selectMobileView('all')" id="m-nav-all" class="flex flex-col items-center text-emerald-400 font-bold">
       <i class="fa-solid fa-cubes text-base mb-0.5"></i>
