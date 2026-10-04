@@ -3,7 +3,7 @@ title TrafficPulse GitHub Auto Sync
 color 0B
 
 echo ========================================================
-echo        TrafficPulse - Auto GitHub Push Engine
+echo        LAND_DNA - Auto GitHub Push Engine
 echo ========================================================
 echo.
 
