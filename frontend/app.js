@@ -24,32 +24,32 @@ const cases = {
       icon: "fa-shield-check"
     },
     graphHtml: `
-      <div class="w-full flex items-center justify-between max-w-xl mx-auto py-2">
-        <div class="text-center p-3 bg-slate-900 border border-slate-700/80 rounded-2xl w-36 shadow-xl">
+      <div class="w-full flex items-center justify-between min-w-[420px] max-w-xl mx-auto py-2">
+        <div class="text-center p-3 bg-slate-900 border border-slate-700/80 rounded-2xl w-32 md:w-36 shadow-xl">
           <i class="fa-solid fa-user-tie text-blue-400 text-base mb-1"></i>
           <div class="text-xs font-bold text-white">আব্দুল করিম</div>
-          <div class="text-[9px] text-slate-400 font-mono mt-0.5">আরএস রেকর্ড (২০০৫)</div>
+          <div class="text-[9px] text-slate-400 font-mono mt-0.5">আরএস (২০০৫)</div>
         </div>
-        <div class="flex-1 flex flex-col items-center px-2">
+        <div class="flex-1 flex flex-col items-center px-1.5">
           <span class="text-[9px] font-mono text-emerald-400 mb-1">কবলা #৮৮৪</span>
           <div class="w-full h-0.5 bg-gradient-to-r from-blue-500 via-emerald-500 to-emerald-400 relative">
             <i class="fa-solid fa-chevron-right absolute -right-1 -top-1.5 text-xs text-emerald-400"></i>
           </div>
           <span class="text-[8px] text-slate-400 font-mono mt-1">৫.০০ শতক</span>
         </div>
-        <div class="text-center p-3 bg-emerald-950/30 border border-emerald-500/60 rounded-2xl w-36 shadow-xl">
+        <div class="text-center p-3 bg-emerald-950/30 border border-emerald-500/60 rounded-2xl w-32 md:w-36 shadow-xl">
           <i class="fa-solid fa-user-check text-emerald-400 text-base mb-1"></i>
           <div class="text-xs font-bold text-white">আনিসুর রহমান</div>
           <div class="text-[9px] text-emerald-400 font-mono mt-0.5">বর্তমান (২০১৫)</div>
         </div>
-        <div class="flex-1 flex flex-col items-center px-2">
+        <div class="flex-1 flex flex-col items-center px-1.5">
           <span class="text-[9px] font-mono text-purple-400 mb-1">ই-নামজারি</span>
           <div class="w-full h-0.5 bg-gradient-to-r from-emerald-500 to-purple-500 relative">
             <i class="fa-solid fa-chevron-right absolute -right-1 -top-1.5 text-xs text-purple-400"></i>
           </div>
           <span class="text-[8px] text-slate-400 font-mono mt-1">কেস #৪৪১</span>
         </div>
-        <div class="text-center p-3 bg-slate-900 border border-slate-700/80 rounded-2xl w-36 shadow-xl">
+        <div class="text-center p-3 bg-slate-900 border border-slate-700/80 rounded-2xl w-32 md:w-36 shadow-xl">
           <i class="fa-solid fa-file-signature text-purple-400 text-base mb-1"></i>
           <div class="text-xs font-bold text-white">খতিয়ান ৪৫৬</div>
           <div class="text-[9px] text-slate-400 font-mono mt-0.5">মিউটেশন সম্পন্ন</div>
@@ -88,7 +88,7 @@ const cases = {
       [23.7497, 90.3909],
       [23.7495, 90.3900]
     ],
-    gisStatusText: "কোনো সড়ক বা সরকারি খাস জমিতে ওভারল্যাপ নেই",
+    gisStatusText: "কোনো সড়ক বা সরকারি জমিতে ওভারল্যাপ নেই",
     certNote: "উক্ত জমির চেইন অব টাইটেল, দাগের লেজার ব্যালেন্স ও ফারায়েজ যাচাইপূর্বক কোনো অনিয়ম পাওয়া যায়নি। জমিটি বর্তমান রেকর্ডে হস্তান্তরযোগ্য ও নিরাপদ হিসেবে চিহ্নিত।"
   },
 
@@ -113,33 +113,33 @@ const cases = {
       icon: "fa-triangle-exclamation"
     },
     graphHtml: `
-      <div class="w-full flex items-center justify-between max-w-xl mx-auto py-2">
-        <div class="text-center p-3 bg-slate-900 border border-slate-700/80 rounded-2xl w-36 shadow-xl">
+      <div class="w-full flex items-center justify-between min-w-[420px] max-w-xl mx-auto py-2">
+        <div class="text-center p-3 bg-slate-900 border border-slate-700/80 rounded-2xl w-32 md:w-36 shadow-xl">
           <i class="fa-solid fa-user-shield text-slate-400 text-base mb-1"></i>
           <div class="text-xs font-bold text-white">আব্দুর রউফ</div>
-          <div class="text-[9px] text-slate-400 font-mono mt-0.5">আসল মালিক (২০২০)</div>
+          <div class="text-[9px] text-slate-400 font-mono mt-0.5">আসল (২০২০)</div>
         </div>
-        <div class="flex-1 flex flex-col items-center px-2">
+        <div class="flex-1 flex flex-col items-center px-1.5">
           <span class="text-[9px] font-mono text-rose-400 mb-1 font-bold">বিচ্ছিন্ন লিঙ্ক (!)</span>
           <div class="w-full h-0.5 bg-rose-500 relative">
             <i class="fa-solid fa-xmark absolute -right-1 -top-2 text-xs text-rose-400"></i>
           </div>
           <span class="text-[8px] text-rose-300 font-mono mt-1">টাইটেল গ্যাপ</span>
         </div>
-        <div class="text-center p-3 bg-rose-950/60 border border-rose-500 rounded-2xl w-36 shadow-xl relative">
+        <div class="text-center p-3 bg-rose-950/60 border border-rose-500 rounded-2xl w-32 md:w-36 shadow-xl relative">
           <span class="absolute -top-1.5 -right-1.5 bg-rose-600 text-white rounded-full w-4 h-4 flex items-center justify-center text-[9px] font-bold">!</span>
           <i class="fa-solid fa-user-slash text-rose-400 text-base mb-1"></i>
           <div class="text-xs font-bold text-white">সেলিম চৌধুরী</div>
           <div class="text-[9px] text-rose-300 font-mono mt-0.5">অসম্পৃক্ত বিক্রেতা</div>
         </div>
-        <div class="flex-1 flex flex-col items-center px-2">
+        <div class="flex-1 flex flex-col items-center px-1.5">
           <span class="text-[9px] font-mono text-rose-400 mb-1 font-bold">ডাবল সেল</span>
           <div class="w-full h-0.5 bg-rose-500 relative">
             <i class="fa-solid fa-triangle-exclamation absolute -right-1 -top-2 text-xs text-rose-400"></i>
           </div>
           <span class="text-[8px] text-rose-300 font-mono mt-1">অতিরিক্ত বিক্রি</span>
         </div>
-        <div class="text-center p-3 bg-slate-900 border border-rose-700/60 rounded-2xl w-36 shadow-xl">
+        <div class="text-center p-3 bg-slate-900 border border-rose-700/60 rounded-2xl w-32 md:w-36 shadow-xl">
           <i class="fa-solid fa-hand-holding-dollar text-amber-400 text-base mb-1"></i>
           <div class="text-xs font-bold text-white">কামরুল হাসান</div>
           <div class="text-[9px] text-rose-400 font-mono mt-0.5">প্রতারিত ক্রেতা</div>
@@ -232,13 +232,13 @@ function renderUI() {
 
   // Verdict Box
   const vBox = document.getElementById('verdict-box');
-  vBox.className = `flex items-center gap-4 border p-4 rounded-xl backdrop-blur-md shadow-lg ${data.verdict.badgeClass}`;
-  document.getElementById('verdict-icon').className = `w-12 h-12 rounded-xl flex items-center justify-center text-2xl ${data.verdict.iconClass}`;
+  vBox.className = `flex items-center gap-3.5 border p-3.5 md:p-4 rounded-xl backdrop-blur-md shadow-lg ${data.verdict.badgeClass}`;
+  document.getElementById('verdict-icon').className = `w-11 h-11 rounded-xl flex items-center justify-center text-2xl shrink-0 ${data.verdict.iconClass}`;
   document.getElementById('verdict-icon').innerHTML = `<i class="fa-solid ${data.verdict.icon}"></i>`;
   document.getElementById('verdict-text').innerText = data.verdict.title;
   document.getElementById('verdict-subtext').innerText = data.verdict.subtext;
 
-  // Mutation
+  // Mutation Text
   const mut = document.getElementById('meta-mutation');
   if (data.verdict.status === 'CLEAN') {
     mut.className = "text-sm font-bold text-emerald-400 mt-0.5";
@@ -283,7 +283,7 @@ function renderUI() {
     `;
   });
 
-  // Flags
+  // Discrepancy Flags
   const fBox = document.getElementById('discrepancy-flags');
   fBox.innerHTML = '';
   data.flags.forEach(f => {
@@ -291,7 +291,7 @@ function renderUI() {
     const border = isClean ? 'border-emerald-800/40 bg-emerald-950/20 text-emerald-300' : 'border-rose-800/60 bg-rose-950/30 text-rose-300';
     const icon = isClean ? 'fa-check' : 'fa-triangle-exclamation';
     fBox.innerHTML += `
-      <div class="border ${border} p-3.5 rounded-xl text-xs space-y-1">
+      <div class="border ${border} p-3 rounded-xl text-xs space-y-1">
         <div class="font-bold flex items-center gap-2 text-white">
           <i class="fa-solid ${icon} ${isClean ? 'text-emerald-400' : 'text-rose-400'}"></i> ${f.title}
         </div>
@@ -300,12 +300,12 @@ function renderUI() {
     `;
   });
 
-  // Heirs
+  // Faraez Heirs
   const hBox = document.getElementById('heirs-container');
   hBox.innerHTML = '';
   data.heirs.forEach(h => {
     hBox.innerHTML += `
-      <div class="flex items-center justify-between p-2.5 rounded-xl bg-[#050811] border border-slate-800">
+      <div class="flex items-center justify-between p-2.5 rounded-xl bg-[#03060f] border border-slate-800">
         <div>
           <div class="font-semibold text-slate-200">${h.name}</div>
           <div class="text-[10px] text-teal-400">${h.rel} — ${h.fraction}</div>
@@ -320,7 +320,7 @@ function renderUI() {
   cBox.innerHTML = '';
   data.checklist.forEach(c => {
     cBox.innerHTML += `
-      <div class="flex items-center justify-between p-3 rounded-xl bg-[#050811] border border-slate-800">
+      <div class="flex items-center justify-between p-2.5 rounded-xl bg-[#03060f] border border-slate-800">
         <span class="text-slate-300">${c.text}</span>
         <i class="fa-solid ${c.ok ? 'fa-circle-check text-emerald-400' : 'fa-circle-xmark text-rose-500'} text-sm"></i>
       </div>
@@ -349,13 +349,13 @@ function renderUI() {
 function switchCase(type) {
   currentCase = type;
   if (type === 'clean') {
-    document.getElementById('btn-case-clean').className = "text-xs px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white font-semibold shadow-md shadow-emerald-900/40 transition";
-    document.getElementById('btn-case-fraud').className = "text-xs px-3.5 py-1.5 rounded-lg bg-slate-900 text-slate-300 font-semibold hover:text-white transition";
+    document.getElementById('btn-case-clean').className = "flex-1 md:flex-initial text-xs px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white font-semibold flex items-center justify-center gap-1.5 shadow-md shadow-emerald-900/40 transition";
+    document.getElementById('btn-case-fraud').className = "flex-1 md:flex-initial text-xs px-3.5 py-1.5 rounded-lg bg-slate-900 text-slate-300 font-semibold hover:text-white flex items-center justify-center gap-1.5 transition";
     document.getElementById('search-plot-input').value = "১২৫";
     document.getElementById('search-khatian').value = "456";
   } else {
-    document.getElementById('btn-case-fraud').className = "text-xs px-3.5 py-1.5 rounded-lg bg-rose-600 text-white font-semibold shadow-md shadow-rose-900/40 transition";
-    document.getElementById('btn-case-clean').className = "text-xs px-3.5 py-1.5 rounded-lg bg-slate-900 text-slate-300 font-semibold hover:text-white transition";
+    document.getElementById('btn-case-fraud').className = "flex-1 md:flex-initial text-xs px-3.5 py-1.5 rounded-lg bg-rose-600 text-white font-semibold flex items-center justify-center gap-1.5 shadow-md shadow-rose-900/40 transition";
+    document.getElementById('btn-case-clean').className = "flex-1 md:flex-initial text-xs px-3.5 py-1.5 rounded-lg bg-slate-900 text-slate-300 font-semibold hover:text-white flex items-center justify-center gap-1.5 transition";
     document.getElementById('search-plot-input').value = "২০৪";
     document.getElementById('search-khatian').value = "912";
   }
