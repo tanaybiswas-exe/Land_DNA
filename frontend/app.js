@@ -1,6 +1,7 @@
 let map = null;
 let currentPolygon = null;
 let selectedDocumentFile = null;
+let currentMobileView = 'all';
 
 const cases = {
   clean: {
@@ -216,6 +217,10 @@ function updateMap(data) {
   document.getElementById('gis-status-display').innerHTML = data.verdict.status === 'CLEAN' 
     ? `<i class="fa-solid fa-circle-check text-emerald-400 mr-1"></i>${data.gisStatusText}` 
     : `<i class="fa-solid fa-triangle-exclamation text-rose-400 mr-1"></i>${data.gisStatusText}`;
+  
+  setTimeout(() => {
+    map.invalidateSize();
+  }, 200);
 }
 
 function renderUI() {
@@ -342,8 +347,65 @@ function renderUI() {
     certVBox.innerHTML = `<strong>⚠️ উচ্চ ঝুঁকিপূর্ণ সম্পত্তি:</strong> ${data.certNote}`;
   }
 
-  // Real Map Update
+  // Update Map
   updateMap(data);
+}
+
+// Mobile View Mode Switcher
+function selectMobileView(viewKey) {
+  currentMobileView = viewKey;
+  const isMobile = window.innerWidth < 768;
+
+  // Bottom Nav Highlighting
+  ['all', 'map', 'flags'].forEach(k => {
+    const el = document.getElementById(`m-nav-${k}`);
+    if (el) {
+      if (k === viewKey) {
+        el.className = "flex flex-col items-center text-emerald-400 font-bold";
+      } else {
+        el.className = "flex flex-col items-center text-slate-400";
+      }
+    }
+  });
+
+  if (!isMobile) {
+    // Desktop: Always show everything
+    document.querySelectorAll('.mobile-section').forEach(sec => {
+      sec.style.display = '';
+    });
+    return;
+  }
+
+  // Mobile: Filter sections based on chosen menu/option
+  const sections = {
+    overview: ['sec-overview', 'sec-ai-summary'],
+    graph: ['sec-graph', 'sec-timeline'],
+    map: ['sec-map'],
+    surveys: ['sec-surveys'],
+    faraez: ['sec-faraez'],
+    flags: ['sec-flags', 'sec-checklist'],
+    all: ['sec-overview', 'sec-ai-summary', 'sec-graph', 'sec-map', 'sec-surveys', 'sec-timeline', 'sec-flags', 'sec-faraez', 'sec-checklist']
+  };
+
+  const visibleIds = sections[viewKey] || sections['all'];
+
+  document.querySelectorAll('.mobile-section').forEach(sec => {
+    if (visibleIds.includes(sec.id)) {
+      sec.style.display = 'block';
+    } else {
+      sec.style.display = 'none';
+    }
+  });
+
+  // If map section is shown, recalculate leaflet size
+  if (viewKey === 'map' || viewKey === 'all') {
+    setTimeout(() => {
+      if (map) map.invalidateSize();
+    }, 150);
+  }
+
+  // Smooth scroll to top of content
+  window.scrollTo({ top: 120, behavior: 'smooth' });
 }
 
 function switchCase(type) {
@@ -371,7 +433,7 @@ function handleManualSearch() {
   }
 }
 
-// Modal Handlers
+// Modals
 function openVerificationModal() {
   document.getElementById('cert-modal').classList.remove('hidden');
 }
@@ -415,7 +477,6 @@ function resetOCRState() {
   document.getElementById('camera-file-input').value = "";
 }
 
-// File / Camera Select Handler
 function handleFileSelect(event) {
   const file = event.target.files[0];
   if (!file) return;
@@ -477,7 +538,12 @@ function downloadOCRReport() {
   }, 350);
 }
 
+window.addEventListener('resize', () => {
+  selectMobileView(currentMobileView);
+});
+
 window.onload = () => {
   initMap();
   renderUI();
+  selectMobileView('all');
 };
