@@ -2,6 +2,7 @@ let map = null;
 let currentPolygon = null;
 let selectedDocumentFile = null;
 let currentMobileView = 'all';
+let isSpeaking = false;
 
 const cases = {
   clean: {
@@ -16,6 +17,43 @@ const cases = {
     docId: "DEED-2015-884",
     docHash: "7f83b1657ff1fc53b92dc18148a1d65dfc2d4b1fa3d677284addd200126d9069",
     plainSummary: "এই দলিলটি সম্পূর্ণ বৈধ ও নিঃস্বত্ব বিক্রয় কবলা দলিল। মূল মালিক আব্দুল করিম (আরএস খতিয়ান ৪৫৬) ২০১৫ সালে সম্পূর্ণ ৫.০০ শতাংশ জমি বর্তমান মালিক আনিসুর রহমানের নিকট রেজিস্ট্রি সম্পাদন করেছেন। পরবর্তীতে ২০১৬ সালে এসিল্যান্ড অফিস কর্তৃক ই-নামজারি সম্পন্ন হয়েছে। কোনো উত্তরাধিকার সংক্রান্ত জটিলতা বা অতিরিক্ত হস্তান্তর নেই।",
+    voiceScript: "দাগ নম্বর ১২৫ যাচাই সম্পন্ন হয়েছে। আনিসুর রহমানের নামে ৫ শতাংশ জমির রেকর্ড পুরোপুরি বৈধ। কোনো ডাবল সেলিং বা আদালতের মামলার রেকর্ড পাওয়া যায়নি। জমিটি ক্রয়ের জন্য নিরাপদ হিসেবে চিহ্নিত।",
+    
+    // Feature 2: Litigation Radar
+    litigation: {
+      status: "CLEAN",
+      title: "✓ কোনো দেওয়ানি মামলা বা নিষেধাজ্ঞা নেই (No Court Injunction)",
+      desc: "সহকারী জজ আদালত বা জেলা জজ আদালতে কোনো সক্রিয় বণ্টন বা স্বত্ব মোকদ্দমা তালিকাভুক্ত নেই।",
+      boxClass: "border-emerald-800/60 bg-emerald-950/20 text-emerald-300"
+    },
+
+    // Feature 3: Smart Escrow
+    escrow: {
+      statusText: "LOCKED_IN_ESCROW (বায়োমেট্রিক ও নামজারি শর্তাধীনে অর্থ সুরক্ষিত)",
+      barWidth: "100%",
+      step1Class: "text-emerald-400 font-semibold",
+      step2Class: "text-emerald-400 font-semibold",
+      step3Class: "text-emerald-400 font-semibold"
+    },
+
+    // Feature 4: Ecological Indicator
+    eco: {
+      title: "নদীভাঙন ও খাস সীমানা নিরাপদ",
+      desc: "পলিগন স্যাটেলাইট বিশ্লেষণে কোনো নদী শিকস্তি বা রেলওয়ে খাস জমিতে অংশ পড়েনি।",
+      badge: "VERIFIED_SAFE",
+      boxClass: "border-emerald-800/50 text-emerald-300",
+      badgeClass: "bg-emerald-950 text-emerald-300 border border-emerald-800",
+      iconClass: "fa-shield-halved text-emerald-400"
+    },
+
+    // Feature 5: Biometric Cross Match
+    biometric: {
+      nid: "1994XXXXXX901",
+      score: "৯৯.২% (বায়োমেট্রিক ফিঙ্গারপ্রিন্ট ভেরিফাইড)",
+      scoreClass: "text-emerald-400",
+      note: "জাতীয় পরিচয়পত্র ও সাব-রেজিস্ট্রির ডিজিটাল ফিঙ্গারপ্রিন্ট টোকেন যথাযথভাবে সার্টিফাইড।"
+    },
+
     verdict: {
       status: "CLEAN",
       title: "কোনো অসঙ্গতি পরিলক্ষিত হয়নি",
@@ -105,6 +143,43 @@ const cases = {
     docId: "DEED-2023-F91",
     docHash: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     plainSummary: "সতর্কতা: দলিল #DEED-2023-F91-এ গুরুতর প্রতারণা রয়েছে। পূর্ববর্তী ২০২২ সালের দলিলে মূল মালিক আব্দুর রউফ ৪.০০ শতক বিক্রি করায় দাগে অবশিষ্ট ছিল মাত্র ২.০০ শতক। অথচ সেলিম চৌধুরী (যিনি কোনো ওয়ারিশ বা ক্রেতা নন) সম্পূর্ণ ৬.০০ শতক জমি কামরুল হাসানের নিকট বিক্রির জাল দলিল তৈরি করেছেন।",
+    voiceScript: "সতর্কতা! দাগ নম্বর ২০৪-এ গুরুতর জালিয়াতি ও ডাবল সেলিং শনাক্ত হয়েছে। সেলিম চৌধুরী নামক ব্যক্তির কোনো মালিকানা লিঙ্ক নেই। সহকারী জজ আদালতে মামলা চলমান। এই সম্পত্তিতে কোনো আর্থিক লেনদেন করবেন না।",
+
+    // Feature 2: Litigation Radar
+    litigation: {
+      status: "FRAUD",
+      title: "🚨 বিচারাধীন মামলা ও নিষেধাজ্ঞা সক্রিয় (Court Injunction Active)",
+      desc: "সহকারী জজ আদালত, ঢাকা—মামলা নং ৪১/২০২৩ (বণ্টন ও চিরস্থায়ী নিষেধাজ্ঞা মোকদ্দমা বিচারাধীন)।",
+      boxClass: "border-rose-800/80 bg-rose-950/40 text-rose-300 animate-pulse"
+    },
+
+    // Feature 3: Smart Escrow
+    escrow: {
+      statusText: "TRANSACTION_BLOCKED (মিউটেশন ও দলিলের গরমিলের কারণে অর্থ অবরুদ্ধ)",
+      barWidth: "33%",
+      step1Class: "text-emerald-400 font-semibold",
+      step2Class: "text-rose-400 font-semibold",
+      step3Class: "text-slate-600"
+    },
+
+    // Feature 4: Ecological Indicator
+    eco: {
+      title: "⚠️ সম্ভাব্য সিকস্তি নদীভাঙন সীমানা ফ্ল্যাগ",
+      desc: "স্যাটেলাইটে দাগ ২০৪ এর পূর্ব বাউন্ডারি খালের প্রবাহমান সীমানায় অতিক্রম করেছে।",
+      badge: "ENCROACHMENT_RISK",
+      boxClass: "border-amber-800/60 text-amber-300 bg-amber-950/20",
+      badgeClass: "bg-amber-950 text-amber-300 border border-amber-800",
+      iconClass: "fa-triangle-exclamation text-amber-400"
+    },
+
+    // Feature 5: Biometric Cross Match
+    biometric: {
+      nid: "1988XXXXXX412",
+      score: "২৩.৫% (বায়োমেট্রিক অমিল / ভুয়া পরিচয়পত্র)",
+      scoreClass: "text-rose-400 font-bold",
+      note: "সতর্কতা: সাব-রেজিস্ট্রি টোকেনে বিক্রেতার ফিঙ্গারপ্রিন্ট ডাটাবেজের মূল রেকর্ডের সাথে মেলেনি।"
+    },
+
     verdict: {
       status: "FRAUD",
       title: "৪টি গুরুতর অসঙ্গতি ও ডাবল-সেলিং শনাক্ত!",
@@ -187,6 +262,59 @@ const cases = {
 
 let currentCase = 'clean';
 
+// Feature 1: Bangla Voice Assistant Function
+function toggleVoiceSpeech() {
+  if (!('speechSynthesis' in window)) {
+    alert("আপনার ব্রাউজারে ভয়েস সিন্থেসিস সাপোর্ট করে না।");
+    return;
+  }
+
+  if (isSpeaking) {
+    window.speechSynthesis.cancel();
+    isSpeaking = false;
+    updateVoiceButtonUI(false);
+    return;
+  }
+
+  const data = cases[currentCase];
+  const utterance = new SpeechSynthesisUtterance(data.voiceScript);
+  utterance.lang = 'bn-BD';
+  utterance.rate = 0.95;
+
+  utterance.onstart = () => {
+    isSpeaking = true;
+    updateVoiceButtonUI(true);
+  };
+
+  utterance.onend = () => {
+    isSpeaking = false;
+    updateVoiceButtonUI(false);
+  };
+
+  utterance.onerror = () => {
+    isSpeaking = false;
+    updateVoiceButtonUI(false);
+  };
+
+  window.speechSynthesis.speak(utterance);
+}
+
+function updateVoiceButtonUI(active) {
+  const label = document.getElementById('voice-btn-label');
+  const desktopBtn = document.getElementById('btn-voice-desktop');
+  const mobileBtn = document.getElementById('btn-voice-mobile');
+
+  if (active) {
+    if (label) label.innerText = "ভয়েস থামান";
+    if (desktopBtn) desktopBtn.className = "px-3.5 py-2 bg-rose-950/60 hover:bg-rose-900/80 text-rose-300 border border-rose-700/60 text-xs font-semibold rounded-xl flex items-center gap-2 transition animate-pulse";
+    if (mobileBtn) mobileBtn.className = "p-2.5 bg-rose-900 text-rose-200 rounded-lg text-xs border border-rose-700 animate-pulse";
+  } else {
+    if (label) label.innerText = "ভয়েস রিপোর্ট শুনুন";
+    if (desktopBtn) desktopBtn.className = "px-3.5 py-2 bg-teal-950/60 hover:bg-teal-900/80 text-teal-300 border border-teal-700/60 text-xs font-semibold rounded-xl flex items-center gap-2 transition";
+    if (mobileBtn) mobileBtn.className = "p-2.5 bg-slate-800 text-teal-400 rounded-lg text-xs border border-slate-700";
+  }
+}
+
 function initMap() {
   if (map) return;
   map = L.map('gis-map').setView([23.7501, 90.3901], 16);
@@ -226,6 +354,13 @@ function updateMap(data) {
 function renderUI() {
   const data = cases[currentCase];
 
+  // Stop previous voice playback on scenario switch
+  if (isSpeaking) {
+    window.speechSynthesis.cancel();
+    isSpeaking = false;
+    updateVoiceButtonUI(false);
+  }
+
   document.getElementById('badge-parcel-id').innerText = data.parcelId;
   document.getElementById('parcel-title').innerText = data.title;
   document.getElementById('parcel-owner').innerText = data.owner;
@@ -253,7 +388,39 @@ function renderUI() {
     mut.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> ${data.mutationStatus}`;
   }
 
-  // Graph
+  // Feature 2: Render Litigation Radar
+  const litBox = document.getElementById('litigation-display-box');
+  litBox.className = `p-3.5 rounded-xl border text-xs ${data.litigation.boxClass}`;
+  litBox.innerHTML = `
+    <div class="font-bold mb-1">${data.litigation.title}</div>
+    <div class="text-[11px] opacity-90">${data.litigation.desc}</div>
+  `;
+
+  // Feature 3: Render Smart Escrow
+  document.getElementById('escrow-status-text').innerText = data.escrow.statusText;
+  document.getElementById('escrow-bar').style.width = data.escrow.barWidth;
+  document.getElementById('escrow-step1').className = data.escrow.step1Class;
+  document.getElementById('escrow-step2').className = data.escrow.step2Class;
+  document.getElementById('escrow-step3').className = data.escrow.step3Class;
+
+  // Feature 4: Render Ecological Warning
+  const ecoBox = document.getElementById('eco-warning-box');
+  ecoBox.className = `mt-3 p-3 rounded-xl border flex items-center justify-between text-xs ${data.eco.boxClass}`;
+  document.getElementById('eco-title').innerText = data.eco.title;
+  document.getElementById('eco-desc').innerText = data.eco.desc;
+  document.getElementById('eco-icon').className = `fa-solid ${data.eco.iconClass} text-base`;
+  const ecoBadge = document.getElementById('eco-badge');
+  ecoBadge.innerText = data.eco.badge;
+  ecoBadge.className = `text-[10px] px-2 py-1 rounded font-mono font-bold ${data.eco.badgeClass}`;
+
+  // Feature 5: Render Biometric Score
+  document.getElementById('nid-number-display').innerText = data.biometric.nid;
+  const scoreEl = document.getElementById('nid-score-display');
+  scoreEl.innerText = data.biometric.score;
+  scoreEl.className = `font-mono font-bold ${data.biometric.scoreClass}`;
+  document.getElementById('nid-status-note').innerText = data.biometric.note;
+
+  // Title Graph
   document.getElementById('graph-container').innerHTML = data.graphHtml;
 
   // Survey Cross-Matcher Table
@@ -356,7 +523,6 @@ function selectMobileView(viewKey) {
   currentMobileView = viewKey;
   const isMobile = window.innerWidth < 768;
 
-  // Bottom Nav Highlighting
   ['all', 'map', 'flags'].forEach(k => {
     const el = document.getElementById(`m-nav-${k}`);
     if (el) {
@@ -369,22 +535,20 @@ function selectMobileView(viewKey) {
   });
 
   if (!isMobile) {
-    // Desktop: Always show everything
     document.querySelectorAll('.mobile-section').forEach(sec => {
       sec.style.display = '';
     });
     return;
   }
 
-  // Mobile: Filter sections based on chosen menu/option
   const sections = {
     overview: ['sec-overview', 'sec-ai-summary'],
     graph: ['sec-graph', 'sec-timeline'],
-    map: ['sec-map'],
+    map: ['sec-map', 'sec-escrow'],
     surveys: ['sec-surveys'],
     faraez: ['sec-faraez'],
-    flags: ['sec-flags', 'sec-checklist'],
-    all: ['sec-overview', 'sec-ai-summary', 'sec-graph', 'sec-map', 'sec-surveys', 'sec-timeline', 'sec-flags', 'sec-faraez', 'sec-checklist']
+    flags: ['sec-flags', 'sec-litigation', 'sec-biometric', 'sec-checklist'],
+    all: ['sec-overview', 'sec-ai-summary', 'sec-graph', 'sec-map', 'sec-escrow', 'sec-surveys', 'sec-timeline', 'sec-litigation', 'sec-biometric', 'sec-flags', 'sec-faraez', 'sec-checklist']
   };
 
   const visibleIds = sections[viewKey] || sections['all'];
@@ -397,14 +561,12 @@ function selectMobileView(viewKey) {
     }
   });
 
-  // If map section is shown, recalculate leaflet size
   if (viewKey === 'map' || viewKey === 'all') {
     setTimeout(() => {
       if (map) map.invalidateSize();
     }, 150);
   }
 
-  // Smooth scroll to top of content
   window.scrollTo({ top: 120, behavior: 'smooth' });
 }
 
