@@ -9,13 +9,13 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
-  <!-- Leaflet GIS Real Map -->
+  <!-- Leaflet GIS Map -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-[#050811] text-slate-100 min-h-screen antialiased selection:bg-emerald-500 selection:text-white pb-12">
+<body class="bg-[#050811] text-slate-100 min-h-screen antialiased selection:bg-emerald-500 selection:text-white pb-20 md:pb-12">
 
   <!-- Top System Bar -->
   <div class="bg-[#03060c] border-b border-slate-800/80 px-4 md:px-6 py-2 text-[11px] flex flex-wrap justify-between items-center text-slate-400 gap-2">
@@ -37,7 +37,7 @@
   <header class="border-b border-slate-800/80 bg-[#080d1a]/90 backdrop-blur-xl sticky top-0 z-40 px-4 md:px-8 py-3.5 shadow-2xl">
     <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center justify-between gap-3.5">
       
-      <!-- Brand Logo -->
+      <!-- Logo & Title -->
       <div class="flex items-center justify-between w-full md:w-auto">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 via-emerald-500 to-teal-400 flex items-center justify-center text-slate-950 shadow-lg shadow-emerald-500/20 font-black text-xl">
@@ -54,10 +54,10 @@
           </div>
         </div>
 
-        <!-- Mobile Actions Menu Trigger -->
+        <!-- Phone Top Header Icons -->
         <div class="flex md:hidden gap-1.5">
           <button onclick="openOCRModal()" class="p-2.5 bg-emerald-500 text-slate-950 rounded-lg text-xs font-bold shadow">
-            <i class="fa-solid fa-expand"></i>
+            <i class="fa-solid fa-camera"></i>
           </button>
           <button onclick="openVerificationModal()" class="p-2.5 bg-slate-800 text-slate-200 rounded-lg text-xs border border-slate-700">
             <i class="fa-solid fa-file-contract"></i>
@@ -89,7 +89,7 @@
     </div>
   </header>
 
-  <!-- Interactive Search Strip -->
+  <!-- Interactive Search Strip (Desktop and Mobile Common) -->
   <section class="max-w-[1440px] mx-auto px-4 md:px-8 pt-5">
     <div class="bg-gradient-to-r from-slate-900/90 via-[#0a101f] to-slate-900/90 border border-slate-800 rounded-2xl p-3.5 md:p-4 shadow-xl flex flex-col md:flex-row items-stretch md:items-center gap-3">
       <div class="flex-1">
@@ -118,11 +118,56 @@
     </div>
   </section>
 
+  <!-- ==================== MOBILE APP MENU DASHBOARD (SHUDHU PHONE-E DEKHA JABE) ==================== -->
+  <section class="block md:hidden max-w-[1440px] mx-auto px-4 mt-4" id="mobile-app-menu-hub">
+    <div class="bg-[#080e1c] border border-slate-800/80 rounded-2xl p-4 shadow-xl">
+      <div class="flex items-center justify-between mb-3">
+        <span class="text-xs font-bold text-white flex items-center gap-1.5">
+          <i class="fa-solid fa-grip text-emerald-400"></i> মোবাইল ড্যাশবোর্ড মেনু
+        </span>
+        <span class="text-[10px] text-slate-400">ট্যাপ করে নির্দিষ্ট বিভাগে যান</span>
+      </div>
+
+      <!-- 6-App Grid System -->
+      <div class="grid grid-cols-3 gap-2.5">
+        <button onclick="selectMobileView('overview')" class="flex flex-col items-center justify-center p-3 rounded-xl bg-slate-900 border border-slate-800 text-center active:scale-95 transition">
+          <i class="fa-solid fa-gauge-high text-emerald-400 text-lg mb-1"></i>
+          <span class="text-[10px] font-semibold text-slate-200">সারসংক্ষেপ</span>
+        </button>
+
+        <button onclick="selectMobileView('graph')" class="flex flex-col items-center justify-center p-3 rounded-xl bg-slate-900 border border-slate-800 text-center active:scale-95 transition">
+          <i class="fa-solid fa-diagram-project text-blue-400 text-lg mb-1"></i>
+          <span class="text-[10px] font-semibold text-slate-200">চেইন গ্রাফ</span>
+        </button>
+
+        <button onclick="selectMobileView('map')" class="flex flex-col items-center justify-center p-3 rounded-xl bg-slate-900 border border-slate-800 text-center active:scale-95 transition">
+          <i class="fa-solid fa-earth-americas text-cyan-400 text-lg mb-1"></i>
+          <span class="text-[10px] font-semibold text-slate-200">GIS ম্যাপ</span>
+        </button>
+
+        <button onclick="selectMobileView('surveys')" class="flex flex-col items-center justify-center p-3 rounded-xl bg-slate-900 border border-slate-800 text-center active:scale-95 transition">
+          <i class="fa-solid fa-layer-group text-purple-400 text-lg mb-1"></i>
+          <span class="text-[10px] font-semibold text-slate-200">জরিপ পর্যায়</span>
+        </button>
+
+        <button onclick="selectMobileView('faraez')" class="flex flex-col items-center justify-center p-3 rounded-xl bg-slate-900 border border-slate-800 text-center active:scale-95 transition">
+          <i class="fa-solid fa-scale-balanced text-teal-400 text-lg mb-1"></i>
+          <span class="text-[10px] font-semibold text-slate-200">ফারায়েজ</span>
+        </button>
+
+        <button onclick="selectMobileView('flags')" class="flex flex-col items-center justify-center p-3 rounded-xl bg-slate-900 border border-slate-800 text-center active:scale-95 transition">
+          <i class="fa-solid fa-magnifying-glass-chart text-rose-400 text-lg mb-1"></i>
+          <span class="text-[10px] font-semibold text-slate-200">অসঙ্গতি ও ঝুঁকি</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
   <!-- Core Content Area -->
   <main class="max-w-[1440px] mx-auto px-4 md:px-8 mt-5 space-y-6">
 
-    <!-- KPI Master Header Ribbon -->
-    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#090f1d] via-[#0d1629] to-[#090f1d] border border-slate-800 p-5 md:p-6 shadow-2xl">
+    <!-- KPI Master Header Ribbon (Section: overview) -->
+    <div id="sec-overview" class="mobile-section relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#090f1d] via-[#0d1629] to-[#090f1d] border border-slate-800 p-5 md:p-6 shadow-2xl">
       <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5 relative z-10">
         <div class="space-y-2">
           <div class="flex flex-wrap items-center gap-2.5">
@@ -182,7 +227,7 @@
     </div>
 
     <!-- AI Plain Bangla Deed Summary -->
-    <div class="bg-gradient-to-r from-blue-950/25 via-[#0b1324] to-indigo-950/25 border border-blue-500/20 rounded-2xl p-4 flex items-start gap-3.5 shadow-lg">
+    <div id="sec-ai-summary" class="mobile-section bg-gradient-to-r from-blue-950/25 via-[#0b1324] to-indigo-950/25 border border-blue-500/20 rounded-2xl p-4 flex items-start gap-3.5 shadow-lg">
       <div class="p-2.5 bg-blue-500/10 text-blue-400 rounded-xl text-base mt-0.5 border border-blue-500/20 shrink-0">
         <i class="fa-solid fa-wand-magic-sparkles"></i>
       </div>
@@ -195,14 +240,14 @@
       </div>
     </div>
 
-    <!-- 2-Column Grid -->
+    <!-- 2-Column Responsive Layout -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
-      <!-- LEFT COLUMN (7 Cols): Graph, Leaflet Map, Cross-Matcher, Timeline -->
+      <!-- LEFT COLUMN: Chain Graph, Leaflet Map, Cross-Matcher, Timeline -->
       <div class="lg:col-span-7 space-y-6">
 
-        <!-- Title Chain Graph -->
-        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
+        <!-- Title Chain Graph (Section: graph) -->
+        <div id="sec-graph" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
           <div class="flex items-center justify-between mb-4">
             <div>
               <h3 class="text-sm font-bold text-white flex items-center gap-2">
@@ -217,16 +262,16 @@
           <div class="bg-[#03060f] rounded-xl border border-slate-800/80 p-4 min-h-[170px] overflow-x-auto flex items-center justify-center" id="graph-container"></div>
         </div>
 
-        <!-- Real Leaflet Satellite GIS Map -->
-        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
+        <!-- Real Leaflet Satellite GIS Map (Section: map) -->
+        <div id="sec-map" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
           <div class="flex items-center justify-between mb-3">
             <div>
               <h3 class="text-sm font-bold text-white flex items-center gap-2">
-                <i class="fa-solid fa-earth-americas text-cyan-400"></i> লাইভ জিআইএস স্যাটেলাইট সীমানা ভিউ (GIS Interactive Map)
+                <i class="fa-solid fa-earth-americas text-cyan-400"></i> লাইভ জিআইএস স্যাটেলাইট সীমানা ভিউ (GIS Map)
               </h3>
               <p class="text-[11px] text-slate-400">স্যাটেলাইট ম্যাপে দাগের বাস্তব সীমানা ও বাউন্ডারি যাচাই</p>
             </div>
-            <span class="text-[9px] px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-cyan-300 mono">OpenStreetMap Live</span>
+            <span class="text-[9px] px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-cyan-300 mono">Live GIS</span>
           </div>
 
           <div id="gis-map" class="w-full h-56 md:h-64 rounded-xl border border-slate-800 z-10"></div>
@@ -236,8 +281,8 @@
           </div>
         </div>
 
-        <!-- Survey Cross-Matcher Table -->
-        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
+        <!-- Survey Cross-Matcher Table (Section: surveys) -->
+        <div id="sec-surveys" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
           <div class="flex items-center justify-between mb-3">
             <div>
               <h3 class="text-sm font-bold text-white flex items-center gap-2">
@@ -265,7 +310,7 @@
         </div>
 
         <!-- Transfer Timeline -->
-        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
+        <div id="sec-timeline" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
           <div class="flex items-center justify-between mb-4">
             <h3 class="text-sm font-bold text-white flex items-center gap-2">
               <i class="fa-solid fa-timeline text-amber-400"></i> ঐতিহাসিক দলিল ও হস্তান্তর টাইমলাইন
@@ -277,11 +322,11 @@
 
       </div>
 
-      <!-- RIGHT COLUMN (5 Cols): Evidence Flags, Faraez, Security Checklist -->
+      <!-- RIGHT COLUMN: Evidence Flags, Faraez, Security Checklist -->
       <div class="lg:col-span-5 space-y-6">
 
-        <!-- Forensic Evidence Flags -->
-        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
+        <!-- Forensic Evidence Flags (Section: flags) -->
+        <div id="sec-flags" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
           <div class="flex items-center justify-between mb-2">
             <h3 class="text-sm font-bold text-white flex items-center gap-2">
               <i class="fa-solid fa-magnifying-glass-chart text-rose-400"></i> ফরেনসিক অসঙ্গতি ইঞ্জিন (Evidence-Based)
@@ -294,8 +339,8 @@
           <div class="space-y-2.5" id="discrepancy-flags"></div>
         </div>
 
-        <!-- Faraez Inheritance Calculator -->
-        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
+        <!-- Faraez Inheritance Calculator (Section: faraez) -->
+        <div id="sec-faraez" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
           <div class="flex items-center justify-between mb-3">
             <div>
               <h3 class="text-sm font-bold text-white flex items-center gap-2">
@@ -309,7 +354,7 @@
         </div>
 
         <!-- Pre-Purchase Checklist -->
-        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
+        <div id="sec-checklist" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
           <h3 class="text-sm font-bold text-white flex items-center gap-2 mb-2">
             <i class="fa-solid fa-list-check text-cyan-400"></i> জমি ক্রয়ের পূর্ববর্তী সিকিউরিটি চেকলিস্ট
           </h3>
@@ -321,6 +366,29 @@
 
     </div>
   </main>
+
+  <!-- ==================== MOBILE APP BOTTOM NAVIGATION BAR (SHUDHU PHONE-E DEKHA JABE) ==================== -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-[#060a16]/95 border-t border-slate-800/90 backdrop-blur-xl z-40 px-3 py-2 flex justify-around items-center text-[10px]">
+    <button onclick="selectMobileView('all')" id="m-nav-all" class="flex flex-col items-center text-emerald-400 font-bold">
+      <i class="fa-solid fa-cubes text-base mb-0.5"></i>
+      <span>সবগুলো</span>
+    </button>
+    <button onclick="selectMobileView('map')" id="m-nav-map" class="flex flex-col items-center text-slate-400">
+      <i class="fa-solid fa-earth-americas text-base mb-0.5"></i>
+      <span>ম্যাপ</span>
+    </button>
+    <button onclick="openOCRModal()" class="flex flex-col items-center text-slate-950 bg-emerald-500 rounded-full w-10 h-10 justify-center -mt-4 shadow-lg shadow-emerald-500/30">
+      <i class="fa-solid fa-camera text-base"></i>
+    </button>
+    <button onclick="selectMobileView('flags')" id="m-nav-flags" class="flex flex-col items-center text-slate-400">
+      <i class="fa-solid fa-triangle-exclamation text-base mb-0.5"></i>
+      <span>ঝুঁকি ফ্ল্যাগ</span>
+    </button>
+    <button onclick="openVerificationModal()" class="flex flex-col items-center text-slate-400">
+      <i class="fa-solid fa-file-invoice text-base mb-0.5"></i>
+      <span>সনদপত্র</span>
+    </button>
+  </nav>
 
   <!-- LIVE OCR SCANNER MODAL (File, PDF & Live Camera Enabled) -->
   <div id="ocr-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-3.5 md:p-4">
