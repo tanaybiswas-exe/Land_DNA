@@ -15,7 +15,7 @@ body {
 
 /* Leaflet Dark Map Tile Invert */
 .leaflet-tile-pane {
-  filter: brightness(0.7) invert(1) contrast(2.6) hue-rotate(200deg) saturate(0.25);
+  filter: brightness(0.68) invert(1) contrast(2.7) hue-rotate(200deg) saturate(0.25);
 }
 
 /* Laser Scanner Animation */
@@ -37,7 +37,7 @@ body {
   height: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #050811;
+  background: #040711;
 }
 ::-webkit-scrollbar-thumb {
   background: #1e293b;

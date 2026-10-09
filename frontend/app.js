@@ -4,7 +4,7 @@ let selectedDocumentFile = null;
 let currentMobileView = 'all';
 let isSpeaking = false;
 
-// NID Front and Back Photos State
+// NID Front & Back State
 let nidFrontImage = null;
 let nidBackImage = null;
 
@@ -40,7 +40,7 @@ const cases = {
       step3Class: "text-emerald-400 font-semibold"
     },
 
-    // Ecological Indicator
+    // Ecological Warning
     eco: {
       title: "নদীভাঙন ও খাস সীমানা নিরাপদ",
       desc: "পলিগন স্যাটেলাইট বিশ্লেষণে কোনো নদী শিকস্তি বা রেলওয়ে খাস জমিতে অংশ পড়েনি।",
@@ -68,7 +68,7 @@ const cases = {
     },
     graphHtml: `
       <div class="w-full flex items-center justify-between min-w-[420px] max-w-xl mx-auto py-2">
-        <div class="text-center p-3 bg-slate-900 border border-slate-700/80 rounded-2xl w-32 md:w-36 shadow-xl">
+        <div class="text-center p-3.5 bg-slate-900 border border-slate-700/80 rounded-2xl w-32 md:w-36 shadow-xl">
           <i class="fa-solid fa-user-tie text-blue-400 text-base mb-1"></i>
           <div class="text-xs font-bold text-white">আব্দুল করিম</div>
           <div class="text-[9px] text-slate-400 font-mono mt-0.5">আরএস (২০০৫)</div>
@@ -80,7 +80,7 @@ const cases = {
           </div>
           <span class="text-[8px] text-slate-400 font-mono mt-1">৫.০০ শতক</span>
         </div>
-        <div class="text-center p-3 bg-emerald-950/30 border border-emerald-500/60 rounded-2xl w-32 md:w-36 shadow-xl">
+        <div class="text-center p-3.5 bg-emerald-950/30 border border-emerald-500/60 rounded-2xl w-32 md:w-36 shadow-xl">
           <i class="fa-solid fa-user-check text-emerald-400 text-base mb-1"></i>
           <div class="text-xs font-bold text-white">আনিসুর রহমান</div>
           <div class="text-[9px] text-emerald-400 font-mono mt-0.5">বর্তমান (২০১৫)</div>
@@ -92,7 +92,7 @@ const cases = {
           </div>
           <span class="text-[8px] text-slate-400 font-mono mt-1">কেস #৪৪১</span>
         </div>
-        <div class="text-center p-3 bg-slate-900 border border-slate-700/80 rounded-2xl w-32 md:w-36 shadow-xl">
+        <div class="text-center p-3.5 bg-slate-900 border border-slate-700/80 rounded-2xl w-32 md:w-36 shadow-xl">
           <i class="fa-solid fa-file-signature text-purple-400 text-base mb-1"></i>
           <div class="text-xs font-bold text-white">খতিয়ান ৪৫৬</div>
           <div class="text-[9px] text-slate-400 font-mono mt-0.5">মিউটেশন সম্পন্ন</div>
@@ -166,7 +166,7 @@ const cases = {
       step3Class: "text-slate-600"
     },
 
-    // Ecological Indicator
+    // Ecological Warning
     eco: {
       title: "⚠️ সম্ভাব্য সিকস্তি নদীভাঙন সীমানা ফ্ল্যাগ",
       desc: "স্যাটেলাইটে দাগ ২০৪ এর পূর্ব বাউন্ডারি খালের প্রবাহমান সীমানায় অতিক্রম করেছে।",
@@ -194,7 +194,7 @@ const cases = {
     },
     graphHtml: `
       <div class="w-full flex items-center justify-between min-w-[420px] max-w-xl mx-auto py-2">
-        <div class="text-center p-3 bg-slate-900 border border-slate-700/80 rounded-2xl w-32 md:w-36 shadow-xl">
+        <div class="text-center p-3.5 bg-slate-900 border border-slate-700/80 rounded-2xl w-32 md:w-36 shadow-xl">
           <i class="fa-solid fa-user-shield text-slate-400 text-base mb-1"></i>
           <div class="text-xs font-bold text-white">আব্দুর রউফ</div>
           <div class="text-[9px] text-slate-400 font-mono mt-0.5">আসল (২০২০)</div>
@@ -206,7 +206,7 @@ const cases = {
           </div>
           <span class="text-[8px] text-rose-300 font-mono mt-1">টাইটেল গ্যাপ</span>
         </div>
-        <div class="text-center p-3 bg-rose-950/60 border border-rose-500 rounded-2xl w-32 md:w-36 shadow-xl relative">
+        <div class="text-center p-3.5 bg-rose-950/60 border border-rose-500 rounded-2xl w-32 md:w-36 shadow-xl relative">
           <span class="absolute -top-1.5 -right-1.5 bg-rose-600 text-white rounded-full w-4 h-4 flex items-center justify-center text-[9px] font-bold">!</span>
           <i class="fa-solid fa-user-slash text-rose-400 text-base mb-1"></i>
           <div class="text-xs font-bold text-white">সেলিম চৌধুরী</div>
@@ -219,7 +219,7 @@ const cases = {
           </div>
           <span class="text-[8px] text-rose-300 font-mono mt-1">অতিরিক্ত বিক্রি</span>
         </div>
-        <div class="text-center p-3 bg-slate-900 border border-rose-700/60 rounded-2xl w-32 md:w-36 shadow-xl">
+        <div class="text-center p-3.5 bg-slate-900 border border-rose-700/60 rounded-2xl w-32 md:w-36 shadow-xl">
           <i class="fa-solid fa-hand-holding-dollar text-amber-400 text-base mb-1"></i>
           <div class="text-xs font-bold text-white">কামরুল হাসান</div>
           <div class="text-[9px] text-rose-400 font-mono mt-0.5">প্রতারিত ক্রেতা</div>
@@ -311,11 +311,11 @@ function updateVoiceButtonUI(active) {
   if (active) {
     if (label) label.innerText = "ভয়েস থামান";
     if (desktopBtn) desktopBtn.className = "px-3.5 py-2 bg-rose-950/60 hover:bg-rose-900/80 text-rose-300 border border-rose-700/60 text-xs font-semibold rounded-xl flex items-center gap-2 transition animate-pulse";
-    if (mobileBtn) mobileBtn.className = "p-2.5 bg-rose-900 text-rose-200 rounded-lg text-xs border border-rose-700 animate-pulse";
+    if (mobileBtn) mobileBtn.className = "p-2.5 bg-rose-900 text-rose-200 rounded-xl text-xs border border-rose-700 animate-pulse";
   } else {
     if (label) label.innerText = "ভয়েস রিপোর্ট শুনুন";
     if (desktopBtn) desktopBtn.className = "px-3.5 py-2 bg-teal-950/60 hover:bg-teal-900/80 text-teal-300 border border-teal-700/60 text-xs font-semibold rounded-xl flex items-center gap-2 transition";
-    if (mobileBtn) mobileBtn.className = "p-2.5 bg-slate-800 text-teal-400 rounded-lg text-xs border border-slate-700";
+    if (mobileBtn) mobileBtn.className = "p-2.5 bg-slate-800 text-teal-400 rounded-xl text-xs border border-slate-700";
   }
 }
 
@@ -375,8 +375,8 @@ function renderUI() {
 
   // Verdict Box
   const vBox = document.getElementById('verdict-box');
-  vBox.className = `flex items-center gap-3.5 border p-3.5 md:p-4 rounded-xl backdrop-blur-md shadow-lg ${data.verdict.badgeClass}`;
-  document.getElementById('verdict-icon').className = `w-11 h-11 rounded-xl flex items-center justify-center text-2xl shrink-0 ${data.verdict.iconClass}`;
+  vBox.className = `flex items-center gap-3.5 border p-4 rounded-2xl backdrop-blur-md shadow-lg ${data.verdict.badgeClass}`;
+  document.getElementById('verdict-icon').className = `w-12 h-12 rounded-2xl flex items-center justify-center text-2xl shrink-0 ${data.verdict.iconClass}`;
   document.getElementById('verdict-icon').innerHTML = `<i class="fa-solid ${data.verdict.icon}"></i>`;
   document.getElementById('verdict-text').innerText = data.verdict.title;
   document.getElementById('verdict-subtext').innerText = data.verdict.subtext;
@@ -384,16 +384,16 @@ function renderUI() {
   // Mutation Text
   const mut = document.getElementById('meta-mutation');
   if (data.verdict.status === 'CLEAN') {
-    mut.className = "text-sm font-bold text-emerald-400 mt-0.5";
+    mut.className = "text-sm font-bold text-emerald-400 mt-1";
     mut.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${data.mutationStatus}`;
   } else {
-    mut.className = "text-sm font-bold text-rose-400 mt-0.5";
+    mut.className = "text-sm font-bold text-rose-400 mt-1";
     mut.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> ${data.mutationStatus}`;
   }
 
   // Litigation Radar
   const litBox = document.getElementById('litigation-display-box');
-  litBox.className = `p-3.5 rounded-xl border text-xs ${data.litigation.boxClass}`;
+  litBox.className = `p-4 rounded-2xl border text-xs ${data.litigation.boxClass}`;
   litBox.innerHTML = `
     <div class="font-bold mb-1">${data.litigation.title}</div>
     <div class="text-[11px] opacity-90">${data.litigation.desc}</div>
@@ -408,13 +408,13 @@ function renderUI() {
 
   // Ecological Warning
   const ecoBox = document.getElementById('eco-warning-box');
-  ecoBox.className = `mt-3 p-3 rounded-xl border flex items-center justify-between text-xs ${data.eco.boxClass}`;
+  ecoBox.className = `mt-3.5 p-3 rounded-2xl border flex items-center justify-between text-xs ${data.eco.boxClass}`;
   document.getElementById('eco-title').innerText = data.eco.title;
   document.getElementById('eco-desc').innerText = data.eco.desc;
   document.getElementById('eco-icon').className = `fa-solid ${data.eco.iconClass} text-base`;
   const ecoBadge = document.getElementById('eco-badge');
   ecoBadge.innerText = data.eco.badge;
-  ecoBadge.className = `text-[10px] px-2 py-1 rounded font-mono font-bold ${data.eco.badgeClass}`;
+  ecoBadge.className = `text-[10px] px-2.5 py-1 rounded-lg font-mono font-bold ${data.eco.badgeClass}`;
 
   // Biometric Score
   document.getElementById('nid-number-display').innerText = data.biometric.nid;
@@ -466,7 +466,7 @@ function renderUI() {
     const border = isClean ? 'border-emerald-800/40 bg-emerald-950/20 text-emerald-300' : 'border-rose-800/60 bg-rose-950/30 text-rose-300';
     const icon = isClean ? 'fa-check' : 'fa-triangle-exclamation';
     fBox.innerHTML += `
-      <div class="border ${border} p-3 rounded-xl text-xs space-y-1">
+      <div class="border ${border} p-3.5 rounded-2xl text-xs space-y-1">
         <div class="font-bold flex items-center gap-2 text-white">
           <i class="fa-solid ${icon} ${isClean ? 'text-emerald-400' : 'text-rose-400'}"></i> ${f.title}
         </div>
@@ -480,7 +480,7 @@ function renderUI() {
   hBox.innerHTML = '';
   data.heirs.forEach(h => {
     hBox.innerHTML += `
-      <div class="flex items-center justify-between p-2.5 rounded-xl bg-[#03060f] border border-slate-800">
+      <div class="flex items-center justify-between p-3 rounded-2xl bg-[#030612] border border-slate-800">
         <div>
           <div class="font-semibold text-slate-200">${h.name}</div>
           <div class="text-[10px] text-teal-400">${h.rel} — ${h.fraction}</div>
@@ -495,7 +495,7 @@ function renderUI() {
   cBox.innerHTML = '';
   data.checklist.forEach(c => {
     cBox.innerHTML += `
-      <div class="flex items-center justify-between p-2.5 rounded-xl bg-[#03060f] border border-slate-800">
+      <div class="flex items-center justify-between p-3 rounded-2xl bg-[#030612] border border-slate-800">
         <span class="text-slate-300">${c.text}</span>
         <i class="fa-solid ${c.ok ? 'fa-circle-check text-emerald-400' : 'fa-circle-xmark text-rose-500'} text-sm"></i>
       </div>
@@ -510,10 +510,10 @@ function renderUI() {
   
   const certVBox = document.getElementById('cert-verdict-box');
   if(data.verdict.status === 'CLEAN') {
-    certVBox.className = "p-3.5 rounded-xl border border-emerald-300 bg-emerald-50 text-emerald-900";
+    certVBox.className = "p-4 rounded-2xl border border-emerald-300 bg-emerald-50 text-emerald-900";
     certVBox.innerHTML = `<strong>✓ নিরাপদ হিসেবে প্রতীয়মান:</strong> ${data.certNote}`;
   } else {
-    certVBox.className = "p-3.5 rounded-xl border border-rose-300 bg-rose-50 text-rose-900";
+    certVBox.className = "p-4 rounded-2xl border border-rose-300 bg-rose-50 text-rose-900";
     certVBox.innerHTML = `<strong>⚠️ উচ্চ ঝুঁকিপূর্ণ সম্পত্তি:</strong> ${data.certNote}`;
   }
 
@@ -576,13 +576,13 @@ function selectMobileView(viewKey) {
 function switchCase(type) {
   currentCase = type;
   if (type === 'clean') {
-    document.getElementById('btn-case-clean').className = "flex-1 md:flex-initial text-xs px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white font-semibold flex items-center justify-center gap-1.5 shadow-md shadow-emerald-900/40 transition";
-    document.getElementById('btn-case-fraud').className = "flex-1 md:flex-initial text-xs px-3.5 py-1.5 rounded-lg bg-slate-900 text-slate-300 font-semibold hover:text-white flex items-center justify-center gap-1.5 transition";
+    document.getElementById('btn-case-clean').className = "flex-1 md:flex-initial text-xs px-4 py-2 rounded-xl bg-emerald-600 text-white font-semibold flex items-center justify-center gap-2 shadow-md shadow-emerald-900/40 transition active:scale-95";
+    document.getElementById('btn-case-fraud').className = "flex-1 md:flex-initial text-xs px-4 py-2 rounded-xl bg-slate-900 text-slate-300 font-semibold hover:text-white flex items-center justify-center gap-2 transition active:scale-95";
     document.getElementById('search-plot-input').value = "১২৫";
     document.getElementById('search-khatian').value = "456";
   } else {
-    document.getElementById('btn-case-fraud').className = "flex-1 md:flex-initial text-xs px-3.5 py-1.5 rounded-lg bg-rose-600 text-white font-semibold flex items-center justify-center gap-1.5 shadow-md shadow-rose-900/40 transition";
-    document.getElementById('btn-case-clean').className = "flex-1 md:flex-initial text-xs px-3.5 py-1.5 rounded-lg bg-slate-900 text-slate-300 font-semibold hover:text-white flex items-center justify-center gap-1.5 transition";
+    document.getElementById('btn-case-fraud').className = "flex-1 md:flex-initial text-xs px-4 py-2 rounded-xl bg-rose-600 text-white font-semibold flex items-center justify-center gap-2 shadow-md shadow-rose-900/40 transition active:scale-95";
+    document.getElementById('btn-case-clean').className = "flex-1 md:flex-initial text-xs px-4 py-2 rounded-xl bg-slate-900 text-slate-300 font-semibold hover:text-white flex items-center justify-center gap-2 transition active:scale-95";
     document.getElementById('search-plot-input').value = "২০৪";
     document.getElementById('search-khatian').value = "912";
   }
