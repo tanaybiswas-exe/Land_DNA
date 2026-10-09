@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>LandDNA — National Digital Land Forensic & Verification System</title>
   
-  <!-- Tailwind & FontAwesome -->
+  <!-- Tailwind CSS & FontAwesome -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
@@ -15,18 +15,21 @@
   
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-[#050811] text-slate-100 min-h-screen antialiased selection:bg-emerald-500 selection:text-white pb-24 md:pb-12">
+<body class="bg-[#040711] text-slate-100 min-h-screen antialiased selection:bg-emerald-500 selection:text-white pb-24 md:pb-12">
 
-  <!-- Top System Bar -->
-  <div class="bg-[#03060c] border-b border-slate-800/80 px-4 md:px-6 py-2 text-[11px] flex flex-wrap justify-between items-center text-slate-400 gap-2">
-    <div class="flex items-center gap-2">
-      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+  <!-- Top Authority Status Strip -->
+  <div class="bg-[#020409] border-b border-slate-800/80 px-4 md:px-8 py-2 text-[11px] flex flex-wrap justify-between items-center text-slate-400 gap-2">
+    <div class="flex items-center gap-2.5">
+      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse mr-1.5"></span> লাইভ ফরেনসিক নোড
+      </span>
       <span class="font-medium text-slate-300">ডিজিটাল ভূমি রেকর্ড ও স্মার্ট ভেরিফিকেশন ইঞ্জিন</span>
-      <span class="hidden sm:inline text-slate-600">|</span>
-      <span class="hidden sm:inline">LandTech 2026 Initiative</span>
+      <span class="hidden sm:inline text-slate-700">|</span>
+      <span class="hidden sm:inline text-slate-400">LandTech 2026 Initiative</span>
     </div>
     <div class="flex items-center gap-3 mono text-[10px] ml-auto sm:ml-0">
       <span class="hidden md:inline text-slate-400"><i class="fa-solid fa-server text-emerald-400 mr-1"></i>Node: SVR-BD-01</span>
+      <span class="hidden md:inline text-slate-400"><i class="fa-solid fa-shield-halved text-cyan-400 mr-1"></i>SHA-256 Active</span>
       <span class="px-2 py-0.5 rounded-full bg-amber-950/70 text-amber-300 border border-amber-800/80 font-sans">
         <i class="fa-solid fa-shield mr-1"></i>সিন্থেটিক ডেটাবেজ
       </span>
@@ -34,66 +37,66 @@
   </div>
 
   <!-- Main Navigation Header -->
-  <header class="border-b border-slate-800/80 bg-[#080d1a]/90 backdrop-blur-xl sticky top-0 z-40 px-4 md:px-8 py-3.5 shadow-2xl">
+  <header class="border-b border-slate-800/80 bg-[#070b18]/90 backdrop-blur-2xl sticky top-0 z-40 px-4 md:px-8 py-3.5 shadow-2xl">
     <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center justify-between gap-3.5">
       
-      <!-- Brand Logo -->
+      <!-- Brand Identity -->
       <div class="flex items-center justify-between w-full md:w-auto">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 via-emerald-500 to-teal-400 flex items-center justify-center text-slate-950 shadow-lg shadow-emerald-500/20 font-black text-xl">
+        <div class="flex items-center gap-3.5">
+          <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-emerald-600 via-emerald-500 to-teal-400 flex items-center justify-center text-slate-950 shadow-lg shadow-emerald-500/25 font-black text-2xl">
             <i class="fa-solid fa-fingerprint"></i>
           </div>
           <div>
             <div class="flex items-center gap-2">
-              <h1 class="text-xl font-extrabold tracking-tight text-white flex items-center">
+              <h1 class="text-xl md:text-2xl font-black tracking-tight text-white flex items-center">
                 Land<span class="text-emerald-400">DNA</span>
               </h1>
-              <span class="text-[9px] px-2 py-0.5 rounded-md bg-emerald-950 text-emerald-300 border border-emerald-700/60 font-mono tracking-wider font-semibold">ENTERPRISE</span>
+              <span class="text-[9px] px-2 py-0.5 rounded-md bg-emerald-950 text-emerald-300 border border-emerald-700/60 font-mono tracking-wider font-semibold">ENTERPRISE-PRO</span>
             </div>
-            <p class="text-[10px] text-slate-400 hidden sm:block">স্মার্ট ভূমি রেকর্ড, চেইন ভেরিফিকেশন ও জালিয়াতি শনাক্তকরণ প্ল্যাটফর্ম</p>
+            <p class="text-[10px] md:text-[11px] text-slate-400 hidden sm:block">স্মার্ট ভূমি রেকর্ড, চেইন ভেরিফিকেশন ও জালিয়াতি শনাক্তকরণ প্ল্যাটফর্ম</p>
           </div>
         </div>
 
-        <!-- Mobile Top Trigger Buttons -->
+        <!-- Mobile Quick Icons -->
         <div class="flex md:hidden gap-1.5">
-          <button onclick="toggleVoiceSpeech()" id="btn-voice-mobile" class="p-2.5 bg-slate-800 text-teal-400 rounded-lg text-xs border border-slate-700">
+          <button onclick="toggleVoiceSpeech()" id="btn-voice-mobile" class="p-2.5 bg-slate-800 text-teal-400 rounded-xl border border-slate-700 active:scale-95 transition">
             <i class="fa-solid fa-volume-high"></i>
           </button>
-          <button onclick="openNIDModal()" class="p-2.5 bg-slate-800 text-teal-300 rounded-lg text-xs border border-slate-700">
+          <button onclick="openNIDModal()" class="p-2.5 bg-slate-800 text-teal-300 rounded-xl border border-slate-700 active:scale-95 transition">
             <i class="fa-solid fa-id-card"></i>
           </button>
-          <button onclick="openOCRModal()" class="p-2.5 bg-emerald-500 text-slate-950 rounded-lg text-xs font-bold shadow">
+          <button onclick="openOCRModal()" class="p-2.5 bg-emerald-500 text-slate-950 rounded-xl text-xs font-bold shadow active:scale-95 transition">
             <i class="fa-solid fa-camera"></i>
           </button>
-          <button onclick="openVerificationModal()" class="p-2.5 bg-slate-800 text-slate-200 rounded-lg text-xs border border-slate-700">
+          <button onclick="openVerificationModal()" class="p-2.5 bg-slate-800 text-slate-200 rounded-xl text-xs border border-slate-700 active:scale-95 transition">
             <i class="fa-solid fa-file-contract"></i>
           </button>
         </div>
       </div>
 
-      <!-- Quick Scenario Switcher -->
-      <div class="flex items-center bg-[#03060f] border border-slate-800 p-1.5 rounded-xl gap-1.5 w-full md:w-auto justify-center shadow-inner">
-        <span class="text-[11px] text-slate-400 px-2 font-medium hidden lg:inline">কেস স্টাডি:</span>
-        <button onclick="switchCase('clean')" id="btn-case-clean" class="flex-1 md:flex-initial text-xs px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white font-semibold flex items-center justify-center gap-1.5 shadow-md shadow-emerald-900/40 transition">
+      <!-- Quick Investigation Switcher -->
+      <div class="flex items-center bg-[#02050e] border border-slate-800 p-1.5 rounded-2xl gap-1.5 w-full md:w-auto justify-center shadow-inner">
+        <span class="text-[11px] text-slate-400 px-2 font-medium hidden lg:inline">লাইভ কেস:</span>
+        <button onclick="switchCase('clean')" id="btn-case-clean" class="flex-1 md:flex-initial text-xs px-4 py-2 rounded-xl bg-emerald-600 text-white font-semibold flex items-center justify-center gap-2 shadow-md shadow-emerald-900/40 transition active:scale-95">
           <i class="fa-solid fa-circle-check"></i> বৈধ জমি (১২৫)
         </button>
-        <button onclick="switchCase('fraud')" id="btn-case-fraud" class="flex-1 md:flex-initial text-xs px-3.5 py-1.5 rounded-lg bg-slate-900 text-slate-300 font-semibold hover:text-white flex items-center justify-center gap-1.5 transition">
+        <button onclick="switchCase('fraud')" id="btn-case-fraud" class="flex-1 md:flex-initial text-xs px-4 py-2 rounded-xl bg-slate-900 text-slate-300 font-semibold hover:text-white flex items-center justify-center gap-2 transition active:scale-95">
           <i class="fa-solid fa-triangle-exclamation text-rose-400"></i> জালিয়াতি ও ডাবল সেল (২০৪)
         </button>
       </div>
 
       <!-- Desktop Action Buttons -->
       <div class="hidden md:flex items-center gap-2.5">
-        <button onclick="toggleVoiceSpeech()" id="btn-voice-desktop" class="px-3.5 py-2 bg-teal-950/60 hover:bg-teal-900/80 text-teal-300 border border-teal-700/60 text-xs font-semibold rounded-xl flex items-center gap-2 transition">
+        <button onclick="toggleVoiceSpeech()" id="btn-voice-desktop" class="px-3.5 py-2 bg-teal-950/60 hover:bg-teal-900/80 text-teal-300 border border-teal-700/60 text-xs font-semibold rounded-xl flex items-center gap-2 transition active:scale-95">
           <i class="fa-solid fa-volume-high text-teal-400"></i> <span id="voice-btn-label">ভয়েস রিপোর্ট শুনুন</span>
         </button>
-        <button onclick="openNIDModal()" class="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-teal-300 text-xs font-semibold rounded-xl border border-slate-700 flex items-center gap-2 transition">
+        <button onclick="openNIDModal()" class="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-teal-300 text-xs font-semibold rounded-xl border border-slate-700 flex items-center gap-2 transition active:scale-95">
           <i class="fa-solid fa-id-card text-teal-400"></i> NID যাচাই
         </button>
-        <button onclick="openVerificationModal()" class="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 flex items-center gap-2 transition">
+        <button onclick="openVerificationModal()" class="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 flex items-center gap-2 transition active:scale-95">
           <i class="fa-solid fa-file-contract text-emerald-400"></i> ভেরিফিকেশন রিপোর্ট
         </button>
-        <button onclick="openOCRModal()" class="px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 text-xs font-bold rounded-xl shadow-lg shadow-emerald-500/25 flex items-center gap-2 transition">
+        <button onclick="openOCRModal()" class="px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 text-xs font-bold rounded-xl shadow-lg shadow-emerald-500/25 flex items-center gap-2 transition active:scale-95">
           <i class="fa-solid fa-expand text-slate-950"></i> লাইভ OCR স্ক্যানার
         </button>
       </div>
@@ -103,70 +106,70 @@
 
   <!-- Interactive Search Strip -->
   <section class="max-w-[1440px] mx-auto px-4 md:px-8 pt-5">
-    <div class="bg-gradient-to-r from-slate-900/90 via-[#0a101f] to-slate-900/90 border border-slate-800 rounded-2xl p-3.5 md:p-4 shadow-xl flex flex-col md:flex-row items-stretch md:items-center gap-3">
+    <div class="bg-gradient-to-r from-slate-900/90 via-[#0a1122] to-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-xl flex flex-col md:flex-row items-stretch md:items-center gap-3.5">
       <div class="flex-1">
         <label class="text-[10px] uppercase font-bold text-slate-400 block mb-1">মৌজা ও উপজেলা</label>
         <div class="relative">
-          <i class="fa-solid fa-location-dot absolute left-3 top-2.5 text-xs text-slate-500"></i>
-          <input type="text" value="তেজগাঁও, ঢাকা (মৌজা: বেগুনবাড়ী)" readonly class="w-full bg-[#040712] border border-slate-800 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-200 font-medium">
+          <i class="fa-solid fa-location-dot absolute left-3.5 top-3 text-xs text-slate-500"></i>
+          <input type="text" value="তেজগাঁও, ঢাকা (মৌজা: বেগুনবাড়ী)" readonly class="w-full bg-[#030612] border border-slate-800 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-200 font-medium">
         </div>
       </div>
-      <div class="w-full md:w-44">
+      <div class="w-full md:w-48">
         <label class="text-[10px] uppercase font-bold text-slate-400 block mb-1">খতিয়ান নির্বাচন</label>
-        <select id="search-khatian" class="w-full bg-[#040712] border border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-200 font-medium outline-none">
+        <select id="search-khatian" class="w-full bg-[#030612] border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-200 font-medium outline-none">
           <option value="456">খতিয়ান ৪৫৬ (RS)</option>
           <option value="912">খতিয়ান ৯১২ (BS)</option>
         </select>
       </div>
       <div class="w-full md:w-36">
         <label class="text-[10px] uppercase font-bold text-slate-400 block mb-1">দাগ নম্বর</label>
-        <input type="text" id="search-plot-input" value="১২৫" class="w-full bg-[#040712] border border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-200 font-mono font-bold">
+        <input type="text" id="search-plot-input" value="১২৫" class="w-full bg-[#030612] border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-200 font-mono font-bold">
       </div>
       <div class="md:pt-4">
-        <button onclick="handleManualSearch()" class="w-full md:w-auto px-5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-lg shadow-md flex items-center justify-center gap-2">
+        <button onclick="handleManualSearch()" class="w-full md:w-auto px-6 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-95 transition">
           <i class="fa-solid fa-magnifying-glass"></i> রেকর্ড অনুসন্ধান
         </button>
       </div>
     </div>
   </section>
 
-  <!-- MOBILE APP DASHBOARD MENU (Only on Phone) -->
+  <!-- MOBILE APP HUB (Only on Mobile) -->
   <section class="block md:hidden max-w-[1440px] mx-auto px-4 mt-4" id="mobile-app-menu-hub">
-    <div class="bg-[#080e1c] border border-slate-800/80 rounded-2xl p-4 shadow-xl">
+    <div class="bg-[#080e1e] border border-slate-800/90 rounded-2xl p-4 shadow-xl">
       <div class="flex items-center justify-between mb-3">
-        <span class="text-xs font-bold text-white flex items-center gap-1.5">
+        <span class="text-xs font-bold text-white flex items-center gap-2">
           <i class="fa-solid fa-grip text-emerald-400"></i> মোবাইল ড্যাশবোর্ড মেনু
         </span>
-        <span class="text-[10px] text-slate-400">ট্যাপ করে নির্দিষ্ট বিভাগে যান</span>
+        <span class="text-[10px] text-slate-400">ট্যাপ করে বিভাগে যান</span>
       </div>
 
       <div class="grid grid-cols-3 gap-2.5">
-        <button onclick="selectMobileView('overview')" class="flex flex-col items-center justify-center p-3 rounded-xl bg-slate-900 border border-slate-800 text-center active:scale-95 transition">
+        <button onclick="selectMobileView('overview')" class="flex flex-col items-center justify-center p-3 rounded-2xl bg-slate-900 border border-slate-800 text-center active:scale-95 transition">
           <i class="fa-solid fa-gauge-high text-emerald-400 text-lg mb-1"></i>
           <span class="text-[10px] font-semibold text-slate-200">সারসংক্ষেপ</span>
         </button>
 
-        <button onclick="selectMobileView('graph')" class="flex flex-col items-center justify-center p-3 rounded-xl bg-slate-900 border border-slate-800 text-center active:scale-95 transition">
+        <button onclick="selectMobileView('graph')" class="flex flex-col items-center justify-center p-3 rounded-2xl bg-slate-900 border border-slate-800 text-center active:scale-95 transition">
           <i class="fa-solid fa-diagram-project text-blue-400 text-lg mb-1"></i>
           <span class="text-[10px] font-semibold text-slate-200">চেইন গ্রাফ</span>
         </button>
 
-        <button onclick="selectMobileView('map')" class="flex flex-col items-center justify-center p-3 rounded-xl bg-slate-900 border border-slate-800 text-center active:scale-95 transition">
+        <button onclick="selectMobileView('map')" class="flex flex-col items-center justify-center p-3 rounded-2xl bg-slate-900 border border-slate-800 text-center active:scale-95 transition">
           <i class="fa-solid fa-earth-americas text-cyan-400 text-lg mb-1"></i>
           <span class="text-[10px] font-semibold text-slate-200">GIS ম্যাপ</span>
         </button>
 
-        <button onclick="selectMobileView('surveys')" class="flex flex-col items-center justify-center p-3 rounded-xl bg-slate-900 border border-slate-800 text-center active:scale-95 transition">
+        <button onclick="selectMobileView('surveys')" class="flex flex-col items-center justify-center p-3 rounded-2xl bg-slate-900 border border-slate-800 text-center active:scale-95 transition">
           <i class="fa-solid fa-layer-group text-purple-400 text-lg mb-1"></i>
           <span class="text-[10px] font-semibold text-slate-200">জরিপ পর্যায়</span>
         </button>
 
-        <button onclick="selectMobileView('faraez')" class="flex flex-col items-center justify-center p-3 rounded-xl bg-slate-900 border border-slate-800 text-center active:scale-95 transition">
+        <button onclick="selectMobileView('faraez')" class="flex flex-col items-center justify-center p-3 rounded-2xl bg-slate-900 border border-slate-800 text-center active:scale-95 transition">
           <i class="fa-solid fa-scale-balanced text-teal-400 text-lg mb-1"></i>
           <span class="text-[10px] font-semibold text-slate-200">ফারায়েজ</span>
         </button>
 
-        <button onclick="selectMobileView('flags')" class="flex flex-col items-center justify-center p-3 rounded-xl bg-slate-900 border border-slate-800 text-center active:scale-95 transition">
+        <button onclick="selectMobileView('flags')" class="flex flex-col items-center justify-center p-3 rounded-2xl bg-slate-900 border border-slate-800 text-center active:scale-95 transition">
           <i class="fa-solid fa-magnifying-glass-chart text-rose-400 text-lg mb-1"></i>
           <span class="text-[10px] font-semibold text-slate-200">অসঙ্গতি ও ঝুঁকি</span>
         </button>
@@ -174,18 +177,18 @@
     </div>
   </section>
 
-  <!-- Core Content Area -->
+  <!-- Core Content Workstation -->
   <main class="max-w-[1440px] mx-auto px-4 md:px-8 mt-5 space-y-6">
 
-    <!-- KPI Master Header Ribbon (Section: overview) -->
-    <div id="sec-overview" class="mobile-section relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#090f1d] via-[#0d1629] to-[#090f1d] border border-slate-800 p-5 md:p-6 shadow-2xl">
+    <!-- Master Header Ribbon (Section: overview) -->
+    <div id="sec-overview" class="mobile-section relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#080e1c] via-[#0d172c] to-[#080e1c] border border-slate-800 p-5 md:p-6 shadow-2xl">
       <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5 relative z-10">
-        <div class="space-y-2">
+        <div class="space-y-2.5">
           <div class="flex flex-wrap items-center gap-2.5">
-            <span class="px-2.5 py-0.5 rounded-md text-[11px] font-mono font-bold bg-slate-800 text-emerald-400 border border-slate-700" id="badge-parcel-id">
+            <span class="px-2.5 py-1 rounded-lg text-[11px] font-mono font-bold bg-slate-800 text-emerald-400 border border-slate-700" id="badge-parcel-id">
               PARCEL-BD-DHK-125
             </span>
-            <span class="text-xs text-slate-400 flex items-center gap-1">
+            <span class="text-xs text-slate-400 flex items-center gap-1.5">
               <i class="fa-solid fa-map-pin text-rose-500"></i> তেজগাঁও, ঢাকা | মৌজা: বেগুনবাড়ী
             </span>
           </div>
@@ -198,12 +201,12 @@
           </p>
         </div>
 
-        <div class="flex items-center gap-3.5 bg-[#03060f]/90 border p-3.5 md:p-4 rounded-xl backdrop-blur-md shadow-lg" id="verdict-box">
-          <div class="w-11 h-11 rounded-xl flex items-center justify-center text-2xl shadow-inner shrink-0" id="verdict-icon">
+        <div class="flex items-center gap-3.5 bg-[#030612]/90 border p-4 rounded-2xl backdrop-blur-md shadow-lg" id="verdict-box">
+          <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl shadow-inner shrink-0" id="verdict-icon">
             <i class="fa-solid fa-shield-check"></i>
           </div>
           <div>
-            <div class="text-[10px] uppercase tracking-wider text-slate-400 font-bold">ফরেনসিক ভেরিফিকেশন স্থিতি</div>
+            <div class="text-[10px] uppercase tracking-wider text-slate-400 font-bold">ফরেনসিক ভেরিফিকেশন ফলাফল</div>
             <div class="text-sm md:text-base font-bold" id="verdict-text">কোনো অসঙ্গতি পরিলক্ষিত হয়নি</div>
             <div class="text-[11px] text-slate-400 mt-0.5" id="verdict-subtext">সকল দলিল ও নামজারি সম্পূর্ণ সুসংগত</div>
           </div>
@@ -212,25 +215,25 @@
 
       <!-- Quick Key Metrics Strip -->
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mt-5 pt-5 border-t border-slate-800/80 text-xs">
-        <div class="bg-[#03060f]/40 p-2.5 rounded-xl border border-slate-800/60">
+        <div class="bg-[#030612]/50 p-3 rounded-2xl border border-slate-800/60">
           <div class="text-slate-400 text-[11px]">মোট জমির পরিমাণ</div>
-          <div class="text-sm font-bold text-slate-100 mt-0.5" id="meta-area">৫.০০ শতক</div>
+          <div class="text-sm font-bold text-slate-100 mt-1" id="meta-area">৫.০০ শতক</div>
         </div>
-        <div class="bg-[#03060f]/40 p-2.5 rounded-xl border border-slate-800/60">
+        <div class="bg-[#030612]/50 p-3 rounded-2xl border border-slate-800/60">
           <div class="text-slate-400 text-[11px]">দাগ ব্যালেন্স লেজার</div>
-          <div class="text-sm font-bold text-cyan-400 mt-0.5" id="meta-balance">অবশিষ্ট: ৫.০০ শতক</div>
+          <div class="text-sm font-bold text-cyan-400 mt-1" id="meta-balance">অবশিষ্ট: ৫.০০ শতক</div>
         </div>
-        <div class="bg-[#03060f]/40 p-2.5 rounded-xl border border-slate-800/60">
+        <div class="bg-[#030612]/50 p-3 rounded-2xl border border-slate-800/60">
           <div class="text-slate-400 text-[11px]">নামজারি স্ট্যাটাস</div>
-          <div class="text-sm font-bold text-emerald-400 mt-0.5" id="meta-mutation">মঞ্জুরকৃত ও কার্যকর</div>
+          <div class="text-sm font-bold text-emerald-400 mt-1" id="meta-mutation">মঞ্জুরকৃত ও কার্যকর</div>
         </div>
-        <div class="bg-[#03060f]/40 p-2.5 rounded-xl border border-slate-800/60">
+        <div class="bg-[#030612]/50 p-3 rounded-2xl border border-slate-800/60">
           <div class="text-slate-400 text-[11px]">ক্রিপ্টোগ্রাফিক টাইম-লক</div>
           <div class="text-xs mono text-purple-300 mt-1 truncate" id="meta-timestamp">2026-10-03 17:45 UTC</div>
         </div>
-        <div class="bg-[#03060f]/40 p-2.5 rounded-xl border border-slate-800/60 col-span-2 sm:col-span-1">
+        <div class="bg-[#030612]/50 p-3 rounded-2xl border border-slate-800/60 col-span-2 sm:col-span-1">
           <div class="text-slate-400 text-[11px]">খাস/অধিগ্রহণ স্ট্যাটাস</div>
-          <div class="text-sm font-bold text-slate-200 mt-0.5 flex items-center gap-1.5">
+          <div class="text-sm font-bold text-slate-200 mt-1 flex items-center gap-1.5">
             <i class="fa-solid fa-check text-emerald-400"></i> দায়মুক্ত (Clean)
           </div>
         </div>
@@ -238,27 +241,27 @@
     </div>
 
     <!-- AI Plain Bangla Deed Summary -->
-    <div id="sec-ai-summary" class="mobile-section bg-gradient-to-r from-blue-950/25 via-[#0b1324] to-indigo-950/25 border border-blue-500/20 rounded-2xl p-4 flex items-start gap-3.5 shadow-lg">
-      <div class="p-2.5 bg-blue-500/10 text-blue-400 rounded-xl text-base mt-0.5 border border-blue-500/20 shrink-0">
+    <div id="sec-ai-summary" class="mobile-section bg-gradient-to-r from-blue-950/30 via-[#0a1226] to-indigo-950/30 border border-blue-500/20 rounded-3xl p-4 md:p-5 flex items-start gap-4 shadow-xl">
+      <div class="p-3 bg-blue-500/10 text-blue-400 rounded-2xl text-lg mt-0.5 border border-blue-500/20 shrink-0">
         <i class="fa-solid fa-wand-magic-sparkles"></i>
       </div>
       <div>
         <div class="flex items-center gap-2">
           <h4 class="text-xs font-bold text-blue-300 uppercase tracking-wide">AI সরল বাংলা দলিল সারাংশ (Citizen Deed Simplifier)</h4>
-          <span class="text-[9px] px-1.5 py-0.2 rounded bg-blue-900/40 text-blue-200 border border-blue-700/60 font-mono">Bangla NLP</span>
+          <span class="text-[9px] px-2 py-0.5 rounded-full bg-blue-900/40 text-blue-200 border border-blue-700/60 font-mono">Bangla NLP</span>
         </div>
-        <p class="text-xs text-slate-300 mt-1 leading-relaxed" id="plain-bangla-text">লোড হচ্ছে...</p>
+        <p class="text-xs text-slate-300 mt-1.5 leading-relaxed" id="plain-bangla-text">লোড হচ্ছে...</p>
       </div>
     </div>
 
     <!-- 2-Column Responsive Layout -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
-      <!-- LEFT COLUMN (7 Cols): Graph, Leaflet Map, Cross-Matcher, Escrow, Timeline -->
+      <!-- LEFT COLUMN (7 Cols) -->
       <div class="lg:col-span-7 space-y-6">
 
         <!-- Title Chain Graph (Section: graph) -->
-        <div id="sec-graph" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
+        <div id="sec-graph" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-3xl p-4 md:p-5 shadow-xl">
           <div class="flex items-center justify-between mb-4">
             <div>
               <h3 class="text-sm font-bold text-white flex items-center gap-2">
@@ -266,15 +269,15 @@
               </h3>
               <p class="text-[11px] text-slate-400">হস্তান্তর শৃঙ্খলা ও স্বত্বাধিকারীর ধারাবাহিকতা</p>
             </div>
-            <span class="text-[9px] px-2 py-0.5 rounded bg-[#03060f] border border-slate-800 text-slate-400 mono hidden sm:inline">
+            <span class="text-[9px] px-2 py-0.5 rounded bg-[#030612] border border-slate-800 text-slate-400 mono hidden sm:inline">
               CS ➔ SA ➔ RS ➔ BS
             </span>
           </div>
-          <div class="bg-[#03060f] rounded-xl border border-slate-800/80 p-4 min-h-[170px] overflow-x-auto flex items-center justify-center" id="graph-container"></div>
+          <div class="bg-[#030612] rounded-2xl border border-slate-800/80 p-4 min-h-[170px] overflow-x-auto flex items-center justify-center" id="graph-container"></div>
         </div>
 
         <!-- Real Leaflet Satellite GIS Map + Ecological Indicator (Section: map) -->
-        <div id="sec-map" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
+        <div id="sec-map" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-3xl p-4 md:p-5 shadow-xl">
           <div class="flex items-center justify-between mb-3">
             <div>
               <h3 class="text-sm font-bold text-white flex items-center gap-2">
@@ -285,10 +288,10 @@
             <span class="text-[9px] px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-cyan-300 mono">Live GIS</span>
           </div>
 
-          <div id="gis-map" class="w-full h-56 md:h-64 rounded-xl border border-slate-800 z-10"></div>
+          <div id="gis-map" class="w-full h-56 md:h-64 rounded-2xl border border-slate-800 z-10"></div>
           
           <!-- Ecological Warning Strip -->
-          <div class="mt-3 p-3 rounded-xl border bg-[#040812] flex items-center justify-between text-xs" id="eco-warning-box">
+          <div class="mt-3.5 p-3 rounded-2xl border bg-[#030612] flex items-center justify-between text-xs" id="eco-warning-box">
             <div class="flex items-center gap-2.5">
               <i class="fa-solid fa-water text-cyan-400 text-base" id="eco-icon"></i>
               <div>
@@ -296,7 +299,7 @@
                 <span class="text-[11px] text-slate-400" id="eco-desc">স্যাটেলাইট পলিগন নিরীক্ষা চলছে...</span>
               </div>
             </div>
-            <span class="text-[10px] px-2 py-1 rounded font-mono font-bold" id="eco-badge">SECURE</span>
+            <span class="text-[10px] px-2.5 py-1 rounded-lg font-mono font-bold" id="eco-badge">SECURE</span>
           </div>
 
           <div class="flex flex-col sm:flex-row sm:items-center justify-between text-[11px] text-slate-400 mt-2 gap-1 px-1">
@@ -306,7 +309,7 @@
         </div>
 
         <!-- Smart Contract Mutation Escrow Simulation -->
-        <div id="sec-escrow" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
+        <div id="sec-escrow" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-3xl p-4 md:p-5 shadow-xl">
           <div class="flex items-center justify-between mb-3">
             <div>
               <h3 class="text-sm font-bold text-white flex items-center gap-2">
@@ -314,10 +317,10 @@
               </h3>
               <p class="text-[11px] text-slate-400">বায়োমেট্রিক ও এসিল্যান্ডের নামজারি অনুমোদন ব্যতীত অর্থ হস্তান্তর হবে না</p>
             </div>
-            <span class="text-[9px] px-2 py-0.5 rounded bg-amber-950 border border-amber-800 text-amber-300 mono">P4 Architecture</span>
+            <span class="text-[9px] px-2 py-0.5 rounded bg-amber-950 border border-amber-800 text-amber-300 mono">P4 Escrow</span>
           </div>
 
-          <div class="bg-[#03060f] p-4 rounded-xl border border-slate-800 space-y-3">
+          <div class="bg-[#030612] p-4 rounded-2xl border border-slate-800 space-y-3">
             <div class="flex items-center justify-between text-xs">
               <span class="text-slate-400">বায়না ও লেনদেন অবস্থা:</span>
               <span class="font-bold font-mono text-emerald-400" id="escrow-status-text">LOCKED_IN_ESCROW</span>
@@ -334,7 +337,7 @@
         </div>
 
         <!-- Survey Cross-Matcher Table (Section: surveys) -->
-        <div id="sec-surveys" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
+        <div id="sec-surveys" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-3xl p-4 md:p-5 shadow-xl">
           <div class="flex items-center justify-between mb-3">
             <div>
               <h3 class="text-sm font-bold text-white flex items-center gap-2">
@@ -362,7 +365,7 @@
         </div>
 
         <!-- Transfer Timeline -->
-        <div id="sec-timeline" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
+        <div id="sec-timeline" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-3xl p-4 md:p-5 shadow-xl">
           <div class="flex items-center justify-between mb-4">
             <h3 class="text-sm font-bold text-white flex items-center gap-2">
               <i class="fa-solid fa-timeline text-amber-400"></i> ঐতিহাসিক দলিল ও হস্তান্তর টাইমলাইন
@@ -374,32 +377,32 @@
 
       </div>
 
-      <!-- RIGHT COLUMN (5 Cols): Litigation Radar, Biometric Score, Evidence Flags, Faraez, Security Checklist -->
+      <!-- RIGHT COLUMN (5 Cols) -->
       <div class="lg:col-span-5 space-y-6">
 
         <!-- Conflict & Litigation Radar -->
-        <div id="sec-litigation" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
+        <div id="sec-litigation" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-3xl p-4 md:p-5 shadow-xl">
           <div class="flex items-center justify-between mb-2">
             <h3 class="text-sm font-bold text-white flex items-center gap-2">
               <i class="fa-solid fa-gavel text-amber-400"></i> আইনি বিরোধ ও নিষেধাজ্ঞা রাডার (Litigation Radar)
             </h3>
-            <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-amber-950 border border-amber-800 text-amber-300">P5 Tool</span>
+            <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-amber-950 border border-amber-800 text-amber-300">Radar P5</span>
           </div>
           <p class="text-[11px] text-slate-400 mb-3">আদালতের বিচারাধীন দেওয়ানি বা বণ্টন মোকদ্দমা রিয়েলটাইম মনিটরিং:</p>
-          <div class="p-3.5 rounded-xl border text-xs" id="litigation-display-box"></div>
+          <div class="p-4 rounded-2xl border text-xs" id="litigation-display-box"></div>
         </div>
 
         <!-- Biometric & Synthetic NID Verification Card -->
-        <div id="sec-biometric" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
+        <div id="sec-biometric" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-3xl p-4 md:p-5 shadow-xl">
           <div class="flex items-center justify-between mb-2">
             <h3 class="text-sm font-bold text-white flex items-center gap-2">
               <i class="fa-solid fa-id-card-clip text-emerald-400"></i> বায়োমেট্রিক ও সিন্থেটিক NID ভেরিফিকেশন
             </h3>
-            <button onclick="openNIDModal()" class="text-[10px] font-semibold px-2 py-0.5 bg-teal-500/20 text-teal-300 border border-teal-500/40 rounded hover:bg-teal-500/30">
+            <button onclick="openNIDModal()" class="text-[10px] font-semibold px-2.5 py-1 bg-teal-500/20 text-teal-300 border border-teal-500/40 rounded-xl hover:bg-teal-500/30 transition">
               <i class="fa-solid fa-camera mr-1"></i>NID স্ক্যান
             </button>
           </div>
-          <div class="bg-[#03060f] p-3.5 rounded-xl border border-slate-800 space-y-2 text-xs">
+          <div class="bg-[#030612] p-4 rounded-2xl border border-slate-800 space-y-2 text-xs">
             <div class="flex justify-between items-center">
               <span class="text-slate-400">রেকর্ডীয় বিক্রেতা NID:</span>
               <span class="font-mono text-slate-200" id="nid-number-display">1994XXXXXX901</span>
@@ -408,14 +411,14 @@
               <span class="text-slate-400">বায়োমেট্রিক ম্যাচ স্কোর:</span>
               <span class="font-mono font-bold text-emerald-400" id="nid-score-display">৯৯.২% (সম্পূর্ণ মিলেছে)</span>
             </div>
-            <div class="text-[11px] text-slate-400 pt-1 border-t border-slate-800/80" id="nid-status-note">
+            <div class="text-[11px] text-slate-400 pt-2 border-t border-slate-800/80" id="nid-status-note">
               জাতীয় পরিচয়পত্র ও সাব-রেজিস্ট্রির ফিঙ্গারপ্রিন্ট টোকেন যথাযথভাবে সার্টিফাইড।
             </div>
           </div>
         </div>
 
         <!-- Forensic Evidence Flags (Section: flags) -->
-        <div id="sec-flags" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
+        <div id="sec-flags" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-3xl p-4 md:p-5 shadow-xl">
           <div class="flex items-center justify-between mb-2">
             <h3 class="text-sm font-bold text-white flex items-center gap-2">
               <i class="fa-solid fa-magnifying-glass-chart text-rose-400"></i> ফরেনসিক অসঙ্গতি ইঞ্জিন (Evidence-Based)
@@ -429,7 +432,7 @@
         </div>
 
         <!-- Faraez Inheritance Calculator (Section: faraez) -->
-        <div id="sec-faraez" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
+        <div id="sec-faraez" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-3xl p-4 md:p-5 shadow-xl">
           <div class="flex items-center justify-between mb-3">
             <div>
               <h3 class="text-sm font-bold text-white flex items-center gap-2">
@@ -443,7 +446,7 @@
         </div>
 
         <!-- Pre-Purchase Checklist -->
-        <div id="sec-checklist" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 shadow-xl">
+        <div id="sec-checklist" class="mobile-section bg-slate-900/80 border border-slate-800 rounded-3xl p-4 md:p-5 shadow-xl">
           <h3 class="text-sm font-bold text-white flex items-center gap-2 mb-2">
             <i class="fa-solid fa-list-check text-cyan-400"></i> জমি ক্রয়ের পূর্ববর্তী সিকিউরিটি চেকলিস্ট
           </h3>
@@ -456,8 +459,8 @@
     </div>
   </main>
 
-  <!-- MOBILE APP BOTTOM NAVIGATION BAR (Only on Phone) -->
-  <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-[#060a16]/95 border-t border-slate-800/90 backdrop-blur-xl z-40 px-3 py-2 flex justify-around items-center text-[10px]">
+  <!-- MOBILE BOTTOM NAVIGATION -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-[#050916]/95 border-t border-slate-800/90 backdrop-blur-2xl z-40 px-3 py-2 flex justify-around items-center text-[10px]">
     <button onclick="selectMobileView('all')" id="m-nav-all" class="flex flex-col items-center text-emerald-400 font-bold">
       <i class="fa-solid fa-cubes text-base mb-0.5"></i>
       <span>সবগুলো</span>
@@ -466,7 +469,7 @@
       <i class="fa-solid fa-earth-americas text-base mb-0.5"></i>
       <span>ম্যাপ</span>
     </button>
-    <button onclick="openOCRModal()" class="flex flex-col items-center text-slate-950 bg-emerald-500 rounded-full w-10 h-10 justify-center -mt-4 shadow-lg shadow-emerald-500/30">
+    <button onclick="openOCRModal()" class="flex flex-col items-center text-slate-950 bg-emerald-500 rounded-full w-11 h-11 justify-center -mt-4 shadow-lg shadow-emerald-500/35 active:scale-90 transition">
       <i class="fa-solid fa-camera text-base"></i>
     </button>
     <button onclick="openNIDModal()" class="flex flex-col items-center text-slate-400">
@@ -481,12 +484,12 @@
 
   <!-- NID FRONT & BACK VERIFICATION MODAL -->
   <div id="nid-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-3.5 md:p-4">
-    <div class="bg-[#0b1324] border border-slate-700 max-w-2xl w-full rounded-2xl p-5 md:p-6 shadow-2xl space-y-4 max-h-[92vh] overflow-y-auto">
+    <div class="bg-[#0b1326] border border-slate-700 max-w-2xl w-full rounded-3xl p-5 md:p-6 shadow-2xl space-y-4 max-h-[92vh] overflow-y-auto">
       
       <!-- Modal Header -->
       <div class="flex justify-between items-center border-b border-slate-800 pb-3">
         <div class="flex items-center gap-2.5">
-          <div class="w-8 h-8 rounded-lg bg-teal-500/20 text-teal-400 flex items-center justify-center font-bold">
+          <div class="w-9 h-9 rounded-xl bg-teal-500/20 text-teal-400 flex items-center justify-center font-bold">
             <i class="fa-solid fa-id-card"></i>
           </div>
           <div>
@@ -497,18 +500,18 @@
         <button onclick="closeNIDModal()" class="text-slate-400 hover:text-white p-1"><i class="fa-solid fa-xmark text-lg"></i></button>
       </div>
 
-      <!-- 2-Slot Front & Back Camera Upload Grid -->
+      <!-- 2-Slot Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
         
         <!-- Slot 1: NID Front -->
-        <div class="bg-slate-900 border border-slate-800 rounded-xl p-3 flex flex-col justify-between">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3 flex flex-col justify-between">
           <div>
             <div class="flex justify-between items-center mb-2">
               <span class="text-xs font-bold text-slate-200"><i class="fa-solid fa-image text-emerald-400 mr-1.5"></i>NID সম্মুখভাগ (Front)</span>
               <span class="text-[9px] px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-400 font-mono">ছবি ও নাম</span>
             </div>
             
-            <div class="relative bg-slate-950 border border-dashed border-slate-700 rounded-lg h-28 flex flex-col items-center justify-center overflow-hidden mb-2">
+            <div class="relative bg-slate-950 border border-dashed border-slate-700 rounded-xl h-28 flex flex-col items-center justify-center overflow-hidden mb-2">
               <img id="nid-front-preview" class="w-full h-full object-cover hidden" alt="NID Front Preview">
               <div id="nid-front-placeholder" class="flex flex-col items-center text-slate-500">
                 <i class="fa-solid fa-id-card text-2xl mb-1"></i>
@@ -518,11 +521,11 @@
           </div>
 
           <div class="grid grid-cols-2 gap-1.5">
-            <label for="nid-front-camera" class="cursor-pointer bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg p-2 text-center text-[10px] text-slate-200 font-semibold flex items-center justify-center gap-1">
+            <label for="nid-front-camera" class="cursor-pointer bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl p-2 text-center text-[10px] text-slate-200 font-semibold flex items-center justify-center gap-1 active:scale-95 transition">
               <i class="fa-solid fa-camera text-cyan-400"></i> ছবি তুলুন
               <input type="file" id="nid-front-camera" accept="image/*" capture="environment" class="hidden" onchange="handleNIDUpload(event, 'front')">
             </label>
-            <label for="nid-front-file" class="cursor-pointer bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg p-2 text-center text-[10px] text-slate-200 font-semibold flex items-center justify-center gap-1">
+            <label for="nid-front-file" class="cursor-pointer bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl p-2 text-center text-[10px] text-slate-200 font-semibold flex items-center justify-center gap-1 active:scale-95 transition">
               <i class="fa-solid fa-upload text-emerald-400"></i> আপলোড
               <input type="file" id="nid-front-file" accept="image/*,application/pdf" class="hidden" onchange="handleNIDUpload(event, 'front')">
             </label>
@@ -530,14 +533,14 @@
         </div>
 
         <!-- Slot 2: NID Back -->
-        <div class="bg-slate-900 border border-slate-800 rounded-xl p-3 flex flex-col justify-between">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3 flex flex-col justify-between">
           <div>
             <div class="flex justify-between items-center mb-2">
               <span class="text-xs font-bold text-slate-200"><i class="fa-solid fa-barcode text-cyan-400 mr-1.5"></i>NID পেছনের ভাগ (Back)</span>
               <span class="text-[9px] px-1.5 py-0.5 rounded bg-cyan-950 text-cyan-400 font-mono">ঠিকানা ও বারকোড</span>
             </div>
             
-            <div class="relative bg-slate-950 border border-dashed border-slate-700 rounded-lg h-28 flex flex-col items-center justify-center overflow-hidden mb-2">
+            <div class="relative bg-slate-950 border border-dashed border-slate-700 rounded-xl h-28 flex flex-col items-center justify-center overflow-hidden mb-2">
               <img id="nid-back-preview" class="w-full h-full object-cover hidden" alt="NID Back Preview">
               <div id="nid-back-placeholder" class="flex flex-col items-center text-slate-500">
                 <i class="fa-solid fa-barcode text-2xl mb-1"></i>
@@ -547,11 +550,11 @@
           </div>
 
           <div class="grid grid-cols-2 gap-1.5">
-            <label for="nid-back-camera" class="cursor-pointer bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg p-2 text-center text-[10px] text-slate-200 font-semibold flex items-center justify-center gap-1">
+            <label for="nid-back-camera" class="cursor-pointer bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl p-2 text-center text-[10px] text-slate-200 font-semibold flex items-center justify-center gap-1 active:scale-95 transition">
               <i class="fa-solid fa-camera text-cyan-400"></i> ছবি তুলুন
               <input type="file" id="nid-back-camera" accept="image/*" capture="environment" class="hidden" onchange="handleNIDUpload(event, 'back')">
             </label>
-            <label for="nid-back-file" class="cursor-pointer bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg p-2 text-center text-[10px] text-slate-200 font-semibold flex items-center justify-center gap-1">
+            <label for="nid-back-file" class="cursor-pointer bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl p-2 text-center text-[10px] text-slate-200 font-semibold flex items-center justify-center gap-1 active:scale-95 transition">
               <i class="fa-solid fa-upload text-cyan-400"></i> আপলোড
               <input type="file" id="nid-back-file" accept="image/*,application/pdf" class="hidden" onchange="handleNIDUpload(event, 'back')">
             </label>
@@ -561,7 +564,7 @@
       </div>
 
       <!-- Realtime Extracted NID Info -->
-      <div class="bg-[#050914] border border-slate-800/80 rounded-xl p-3.5 text-xs space-y-1.5 font-mono text-slate-300">
+      <div class="bg-[#030612] border border-slate-800/80 rounded-2xl p-4 text-xs space-y-2 font-mono text-slate-300">
         <div class="flex justify-between"><span class="text-slate-500">এনআইডি নম্বর (Smart Card ID):</span><span id="nid-extracted-no">--</span></div>
         <div class="flex justify-between"><span class="text-slate-500">কার্ডধারীর নাম (English/Bangla):</span><span id="nid-extracted-name">--</span></div>
         <div class="flex justify-between"><span class="text-slate-500">ঠিকানা ও পোস্ট কোড (Backside OCR):</span><span id="nid-extracted-addr">--</span></div>
@@ -569,11 +572,11 @@
       </div>
 
       <!-- Action Buttons -->
-      <div class="flex justify-end gap-2 pt-2 border-t border-slate-800">
-        <button onclick="closeNIDModal()" class="px-4 py-2 border border-slate-700 rounded-xl text-xs text-slate-300 hover:bg-slate-800">
+      <div class="flex justify-end gap-2.5 pt-2 border-t border-slate-800">
+        <button onclick="closeNIDModal()" class="px-4 py-2 border border-slate-700 rounded-xl text-xs text-slate-300 hover:bg-slate-800 transition">
           বন্ধ করুন
         </button>
-        <button onclick="runNIDCrossVerification()" id="btn-run-nid-verify" class="px-5 py-2 bg-gradient-to-r from-teal-500 to-emerald-600 hover:from-teal-400 hover:to-emerald-500 text-slate-950 rounded-xl text-xs font-bold shadow-md flex items-center gap-2">
+        <button onclick="runNIDCrossVerification()" id="btn-run-nid-verify" class="px-5 py-2 bg-gradient-to-r from-teal-500 to-emerald-600 hover:from-teal-400 hover:to-emerald-500 text-slate-950 rounded-xl text-xs font-bold shadow-md flex items-center gap-2 active:scale-95 transition">
           <i class="fa-solid fa-fingerprint"></i> NID ক্রস-ভেরিফিকেশন সম্পন্ন করুন
         </button>
       </div>
@@ -581,14 +584,14 @@
     </div>
   </div>
 
-  <!-- LIVE OCR SCANNER MODAL (File, PDF & Live Camera Enabled) -->
+  <!-- LIVE OCR SCANNER MODAL -->
   <div id="ocr-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-3.5 md:p-4">
-    <div class="bg-[#0b1324] border border-slate-700 max-w-2xl w-full rounded-2xl p-5 md:p-6 shadow-2xl space-y-4 max-h-[92vh] overflow-y-auto">
+    <div class="bg-[#0b1326] border border-slate-700 max-w-2xl w-full rounded-3xl p-5 md:p-6 shadow-2xl space-y-4 max-h-[92vh] overflow-y-auto">
       
       <!-- Modal Header -->
       <div class="flex justify-between items-center border-b border-slate-800 pb-3">
         <div class="flex items-center gap-2.5">
-          <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+          <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
             <i class="fa-solid fa-file-invoice"></i>
           </div>
           <div>
@@ -601,14 +604,14 @@
 
       <!-- Real Upload & Camera Zone -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        <label for="doc-file-input" class="cursor-pointer bg-slate-900 hover:bg-slate-800/80 border border-dashed border-slate-700 rounded-xl p-3.5 flex flex-col items-center justify-center text-center transition">
+        <label for="doc-file-input" class="cursor-pointer bg-slate-900 hover:bg-slate-800/80 border border-dashed border-slate-700 rounded-2xl p-4 flex flex-col items-center justify-center text-center transition active:scale-95">
           <i class="fa-solid fa-cloud-arrow-up text-xl text-emerald-400 mb-1"></i>
           <span class="text-xs font-semibold text-slate-200">ফাইল / PDF আপলোড</span>
           <span class="text-[9px] text-slate-500 mt-0.5">ডিভাইস থেকে PDF বা ছবি সিলেক্ট করুন</span>
           <input type="file" id="doc-file-input" accept="image/*,application/pdf" class="hidden" onchange="handleFileSelect(event)">
         </label>
 
-        <label for="camera-file-input" class="cursor-pointer bg-slate-900 hover:bg-slate-800/80 border border-dashed border-slate-700 rounded-xl p-3.5 flex flex-col items-center justify-center text-center transition">
+        <label for="camera-file-input" class="cursor-pointer bg-slate-900 hover:bg-slate-800/80 border border-dashed border-slate-700 rounded-2xl p-4 flex flex-col items-center justify-center text-center transition active:scale-95">
           <i class="fa-solid fa-camera text-xl text-cyan-400 mb-1"></i>
           <span class="text-xs font-semibold text-slate-200">সরাসরি ছবি তুলুন</span>
           <span class="text-[9px] text-slate-500 mt-0.5">ক্যামেরা চালু করে দলিলের ছবি তুলুন</span>
@@ -617,7 +620,7 @@
       </div>
 
       <!-- Visual Scanner Preview Window -->
-      <div class="relative bg-slate-950 border border-slate-800 rounded-xl p-4 overflow-hidden h-44 flex flex-col justify-center items-center text-center">
+      <div class="relative bg-slate-950 border border-slate-800 rounded-2xl p-4 overflow-hidden h-44 flex flex-col justify-center items-center text-center">
         <div id="scanner-laser" class="absolute top-0 left-0 right-0 h-1 bg-emerald-400 shadow-[0_0_15px_#10b981] hidden"></div>
         <img id="ocr-preview-img" class="max-h-32 max-w-full rounded object-contain mb-1 hidden border border-slate-800 shadow" alt="Uploaded Document">
         <i class="fa-solid fa-file-pdf text-4xl text-slate-600 mb-2" id="ocr-icon"></i>
@@ -627,7 +630,7 @@
       </div>
 
       <!-- Extracted Key-Value Pair Box -->
-      <div class="bg-[#050914] border border-slate-800/80 rounded-xl p-3.5 text-xs space-y-1.5 font-mono text-slate-300">
+      <div class="bg-[#030612] border border-slate-800/80 rounded-2xl p-4 text-xs space-y-1.5 font-mono text-slate-300">
         <div class="flex justify-between"><span class="text-slate-500">আপলোডকৃত ফাইল:</span><span id="ocr-res-filename" class="text-slate-300 font-semibold truncate max-w-[240px]">কোনো ফাইল নেই</span></div>
         <div class="flex justify-between"><span class="text-slate-500">দলিল নম্বর:</span><span id="ocr-res-deed">--</span></div>
         <div class="flex justify-between"><span class="text-slate-500">দাগ ও খতিয়ান:</span><span id="ocr-res-plot">--</span></div>
@@ -637,15 +640,15 @@
 
       <!-- Action Buttons with Direct Report Download -->
       <div class="flex flex-col sm:flex-row justify-between items-center pt-2 border-t border-slate-800 gap-2">
-        <button onclick="downloadOCRReport()" id="btn-download-ocr-report" class="w-full sm:w-auto px-4 py-2 bg-slate-800 hover:bg-slate-700 text-emerald-400 border border-emerald-500/30 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 hidden transition">
+        <button onclick="downloadOCRReport()" id="btn-download-ocr-report" class="w-full sm:w-auto px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-emerald-400 border border-emerald-500/30 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 hidden transition active:scale-95">
           <i class="fa-solid fa-file-arrow-down"></i> স্ক্যান রিপোর্ট ডাউনলোড
         </button>
 
         <div class="flex gap-2 w-full sm:w-auto sm:ml-auto justify-end">
-          <button onclick="closeOCRModal()" class="flex-1 sm:flex-initial px-4 py-2 border border-slate-700 rounded-xl text-xs text-slate-300 hover:bg-slate-800">
+          <button onclick="closeOCRModal()" class="flex-1 sm:flex-initial px-4 py-2.5 border border-slate-700 rounded-xl text-xs text-slate-300 hover:bg-slate-800 transition">
             বন্ধ করুন
           </button>
-          <button onclick="runOCRScanSimulation()" id="btn-run-ocr" class="flex-1 sm:flex-initial px-5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold shadow-md flex items-center justify-center gap-2">
+          <button onclick="runOCRScanSimulation()" id="btn-run-ocr" class="flex-1 sm:flex-initial px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold shadow-md flex items-center justify-center gap-2 active:scale-95 transition">
             <i class="fa-solid fa-bolt"></i> স্ক্যান ও এক্সট্র্যাক্ট শুরু করুন
           </button>
         </div>
@@ -655,11 +658,11 @@
 
   <!-- Printable Official Citizen Certificate Modal -->
   <div id="cert-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-3.5 md:p-4">
-    <div class="bg-white text-slate-900 max-w-2xl w-full rounded-2xl p-6 md:p-8 shadow-2xl space-y-5 border border-slate-300 relative max-h-[92vh] overflow-y-auto print:p-0">
+    <div class="bg-white text-slate-900 max-w-2xl w-full rounded-3xl p-6 md:p-8 shadow-2xl space-y-5 border border-slate-300 relative max-h-[92vh] overflow-y-auto print:p-0">
       
       <div class="border-b pb-4 flex justify-between items-start">
         <div class="flex items-center gap-3">
-          <div class="w-11 h-11 rounded-xl bg-emerald-700 text-white flex items-center justify-center font-bold text-lg">DNA</div>
+          <div class="w-11 h-11 rounded-2xl bg-emerald-700 text-white flex items-center justify-center font-bold text-lg">DNA</div>
           <div>
             <h2 class="text-base md:text-lg font-bold text-slate-900 leading-tight">ডিজিটাল ভূমি সত্যতা ও ফরেনসিক পরীক্ষণ সনদ</h2>
             <p class="text-[10px] md:text-xs text-slate-500 font-mono">LandDNA Multi-Tier Ledger Verification Certificate</p>
@@ -671,7 +674,7 @@
       </div>
 
       <div class="space-y-4 text-xs leading-relaxed">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 bg-slate-50 p-4 rounded-xl border border-slate-200">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 bg-slate-50 p-4 rounded-2xl border border-slate-200">
           <div>
             <span class="text-slate-500">দাগ ও খতিয়ান:</span>
             <div class="font-bold text-sm text-slate-800" id="cert-plot">দাগ ১২৫, খতিয়ান ৪৫৬</div>
@@ -690,7 +693,7 @@
           </div>
         </div>
 
-        <div class="p-3.5 rounded-xl border" id="cert-verdict-box"></div>
+        <div class="p-4 rounded-2xl border" id="cert-verdict-box"></div>
 
         <div class="flex items-center justify-between text-[11px] text-slate-500 pt-3 border-t">
           <div class="flex items-center gap-2">
@@ -708,8 +711,8 @@
       </div>
 
       <div class="flex justify-end gap-2.5 pt-2 print:hidden">
-        <button onclick="closeVerificationModal()" class="px-4 py-2 border rounded-xl text-xs font-semibold hover:bg-slate-50 text-slate-600">বন্ধ করুন</button>
-        <button onclick="window.print()" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold shadow flex items-center gap-2">
+        <button onclick="closeVerificationModal()" class="px-4 py-2 border rounded-xl text-xs font-semibold hover:bg-slate-50 text-slate-600 transition">বন্ধ করুন</button>
+        <button onclick="window.print()" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold shadow flex items-center gap-2 transition active:scale-95">
           <i class="fa-solid fa-print"></i> সনদ প্রিন্ট / ডাউনলোড
         </button>
       </div>
